@@ -24,6 +24,8 @@ public class LoadSaveOffsets : MonoBehaviour
     
     private void Start()
     {
+        saveobject = new SaveObject();
+
         string LoadFileName = "LastQuit." + FileExtension;
         string FilePath = Path.Combine(Application.persistentDataPath, LoadFileName);
 
@@ -33,10 +35,8 @@ public class LoadSaveOffsets : MonoBehaviour
             ReadDataFromObject();
             Debug.Log("Loading Offsets:" + LoadFileName);
         }
-        else
-        {
-            saveobject = new SaveObject();
-        }
+
+        paneloffsets.UpdateInputs();
     }
 
     public void OnClickSave()

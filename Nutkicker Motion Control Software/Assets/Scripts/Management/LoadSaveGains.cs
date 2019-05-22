@@ -22,6 +22,8 @@ public class LoadSaveGains: MonoBehaviour
     
     private void Start()
     {
+        saveobject = new SaveObject();
+
         string LoadFileName = "LastQuit." + FileExtension;
         string FilePath = Path.Combine(Application.persistentDataPath, LoadFileName);
 
@@ -30,10 +32,6 @@ public class LoadSaveGains: MonoBehaviour
             saveobject = ReadObjectFromFile(FilePath);
             ReadDataFromObject();
             Debug.Log("Loading Gains:" + LoadFileName);
-        }
-        else
-        {
-            saveobject = new SaveObject();
         }
     }
 
@@ -148,7 +146,7 @@ public class LoadSaveGains: MonoBehaviour
     }
     private void WriteObjectToFile(string path)
     {
-        string json = JsonUtility.ToJson(saveobject,true);
+        string json = JsonUtility.ToJson(saveobject, true);
         
         using (StreamWriter writer = new StreamWriter(File.Create(path)))
         {

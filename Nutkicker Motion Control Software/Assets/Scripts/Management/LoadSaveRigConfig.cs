@@ -24,10 +24,11 @@ public class LoadSaveRigConfig : MonoBehaviour
     
     private void Start()
     {
-        string LoadFileName = "LastQuit." + FileExtension;
-        string FilePath = Path.Combine(Application.persistentDataPath, LoadFileName);
         saveobject = new SaveObject();
 
+        string LoadFileName = "LastQuit." + FileExtension;
+        string FilePath = Path.Combine(Application.persistentDataPath, LoadFileName);
+        
         if (File.Exists(FilePath))
         {
             saveobject = ReadObjectFromFile(FilePath);
@@ -150,9 +151,9 @@ public class LoadSaveRigConfig : MonoBehaviour
     [System.Serializable]
     public class SaveObject
     {
-        public PlatformSettings base_settings;
-        public PlatformSettings final_settings;
-        public ActuatorSettings actuator_settings;
+        public PlatformSettings base_settings = new PlatformSettings();
+        public PlatformSettings final_settings = new PlatformSettings();
+        public ActuatorSettings actuator_settings = new ActuatorSettings();
     }
 
     [System.Serializable]
