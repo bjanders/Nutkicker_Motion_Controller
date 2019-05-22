@@ -138,7 +138,7 @@ public class LoadSaveRigConfig : MonoBehaviour
     }
     private void WriteObjectToFile(string path)
     {
-        string json = JsonUtility.ToJson(saveobject,true);
+        string json = JsonUtility.ToJson(saveobject, true);
         
         using (StreamWriter writer = new StreamWriter(File.Create(path)))
         {
