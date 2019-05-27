@@ -13,7 +13,7 @@ public class LowPass : MonoBehaviour
     [SerializeField] private Stream OutStream_LFC;
     
     [Header("Filter Parameter")]
-    [Range(0, 1.0f)] [SerializeField] private float EMA_alpha = 0.02f;
+    [Range(0, 1.0f)] [SerializeField] private float EMA_alpha = 0.05f;
     [SerializeField] private float LFC_Value = 0;
 
     private Stopwatch stopwatch = new Stopwatch();
