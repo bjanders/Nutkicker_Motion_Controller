@@ -10,7 +10,7 @@ public class HighPass : MonoBehaviour
     //Inspector:
     [Header("Streams")]
     [SerializeField] private Stream InStream;
-    [SerializeField] private Stream OutStream_HFC;
+    [SerializeField] private Stream OutStream;
     
     [Header("Filter Parameter")]
     [Range(0, 1.0f)] [SerializeField] private float EMA_alpha = 0.02f;
@@ -22,12 +22,12 @@ public class HighPass : MonoBehaviour
     /////////////////////////////////////////////////////////////////////////
     void Start()
     {
-        if (InStream == null)
+        if (transform.parent.gameObject.GetComponent<Stream>() != null)
         {
             InStream = transform.parent.gameObject.GetComponent<Stream>();
+            OutStream.name = InStream.name + "_HP";
         }
-
-        OutStream_HFC.name = InStream.name + "_HP";
+        
         UpdateEMA_alpha();
     }
     void FixedUpdate()
@@ -36,7 +36,7 @@ public class HighPass : MonoBehaviour
         this.HFC_Value = (EMA_alpha * Value) + ((1 - EMA_alpha) * this.HFC_Value);      //Calculate the EMA_Value...
         float HFC_Value = Value - this.HFC_Value;
 
-        OutStream_HFC.Push(new Datapoint(Time.fixedTime, HFC_Value, InStream.Type));
+        OutStream.Push(new Datapoint(Time.fixedTime, HFC_Value, InStream.Type));
         
         UpdateEMA_alpha();                                        //Did someone change the settings of the EMA?
         Watchdog();
@@ -53,10 +53,10 @@ public class HighPass : MonoBehaviour
     }
     private void ResetFilter()
     {
-        OutStream_HFC.Clear();
+        OutStream.Clear();
     }
     private void UpdateEMA_alpha()
     {
-        OutStream_HFC.EMA_alpha = EMA_alpha;
+        OutStream.EMA_alpha = EMA_alpha;
     }
 }
