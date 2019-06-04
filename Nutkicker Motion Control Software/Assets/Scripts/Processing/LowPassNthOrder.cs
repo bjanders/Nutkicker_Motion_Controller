@@ -21,8 +21,8 @@ public class LowPassNthOrder : MonoBehaviour
     [SerializeField] private Stream OutStream;
 
     [Header("Filter Parameter")]
-    [SerializeField] FilterOrder Order;
-    [Range(0, 1.0f)] [SerializeField] private float EMA_alpha = 0.05f;
+    [SerializeField] public FilterOrder Order;
+    [Range(0, 1.0f)] [SerializeField] public float EMA_alpha = 0.05f;
     [SerializeField] private float Value;
 
     private LowPassModular[] LP = new LowPassModular[4];

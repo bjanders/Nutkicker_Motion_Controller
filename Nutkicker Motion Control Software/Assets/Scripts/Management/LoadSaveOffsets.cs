@@ -13,8 +13,8 @@ public class LoadSaveOffsets : MonoBehaviour
     [Header("Inputs")]
     [SerializeField] PanelOffsets paneloffsets;
     [Header("File")]
-    [SerializeField] string FileName = "Offset_Settings";
-    [ShowOnly] [SerializeField] string FileExtension = "offsets";
+    [SerializeField] string FileName;
+    [ShowOnly] [SerializeField] string FileExtension;
 
     string FullFileName;
     string DirectoryPath;
@@ -25,6 +25,9 @@ public class LoadSaveOffsets : MonoBehaviour
     private void Start()
     {
         saveobject = new SaveObject();
+
+        FileName = "OffsetSettings";
+        FileExtension = "Offsets";
 
         string LoadFileName = "LastQuit." + FileExtension;
         string FilePath = Path.Combine(Application.persistentDataPath, LoadFileName);
@@ -102,7 +105,7 @@ public class LoadSaveOffsets : MonoBehaviour
         LoadOffsets(Mot_HFC, saveobject.Offsets_HFC);
         LoadOffsets(Final, saveobject.Offsets_Final);
     }
-    private void LoadOffsets(Transformer transformer, Offsets offsets)
+    private void LoadOffsets(Transformer transformer, OffsetSettings offsets)
     {
         transformer.Offset_Sway = offsets.Sway;
         transformer.Offset_Heave = offsets.Heave;
@@ -139,7 +142,7 @@ public class LoadSaveOffsets : MonoBehaviour
         SaveOffsets(Mot_HFC, saveobject.Offsets_HFC);
         SaveOffsets(Final, saveobject.Offsets_Final);
     }
-    private void SaveOffsets(Transformer transformer, Offsets offsets)
+    private void SaveOffsets(Transformer transformer, OffsetSettings offsets)
     {
         offsets.Sway = transformer.Offset_Sway;
         offsets.Heave = transformer.Offset_Heave;
@@ -162,14 +165,14 @@ public class LoadSaveOffsets : MonoBehaviour
     [System.Serializable]
     public class SaveObject
     {
-        public Offsets Offsets_Height = new Offsets();
-        public Offsets Offsets_LFC = new Offsets();
-        public Offsets Offsets_HFC  = new Offsets();
-        public Offsets Offsets_Final = new Offsets();
+        public OffsetSettings Offsets_Height = new OffsetSettings();
+        public OffsetSettings Offsets_LFC = new OffsetSettings();
+        public OffsetSettings Offsets_HFC  = new OffsetSettings();
+        public OffsetSettings Offsets_Final = new OffsetSettings();
     }
     
     [System.Serializable]
-    public class Offsets
+    public class OffsetSettings
     {
         public float Sway;
         public float Heave;

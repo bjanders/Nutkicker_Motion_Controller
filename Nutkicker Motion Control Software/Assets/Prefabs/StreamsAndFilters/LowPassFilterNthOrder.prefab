@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InStream: {fileID: 0}
   OutStream: {fileID: 4300221015171671393}
-  Order: 2
+  Order: 1
   EMA_alpha: 0.05
   Value: 0
 --- !u!114 &4300221015171671393

@@ -13,7 +13,7 @@ public class HighPass : MonoBehaviour
     [SerializeField] private Stream OutStream;
     
     [Header("Filter Parameter")]
-    [Range(0, 1.0f)] [SerializeField] private float EMA_alpha = 0.02f;
+    [Range(0, 1.0f)] [SerializeField] public float EMA_alpha = 0.02f;
     [SerializeField] private float HFC_Value = 0;
 
     private Stopwatch stopwatch = new Stopwatch();

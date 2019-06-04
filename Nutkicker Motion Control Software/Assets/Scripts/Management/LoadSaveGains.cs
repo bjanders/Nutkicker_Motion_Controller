@@ -96,7 +96,7 @@ public class LoadSaveGains: MonoBehaviour
         LoadGains(Mot_HFC, saveobject.Gains_HFC);
         LoadGains(Final, saveobject.Gains_Final);
     }
-    private void LoadGains(Transformer transformer, Gains gains)
+    private void LoadGains(Transformer transformer, GainSettings gains)
     {
         transformer.Gain_Master = gains.Master;
         transformer.Gain_Sway = gains.Sway;
@@ -134,7 +134,7 @@ public class LoadSaveGains: MonoBehaviour
         SaveGains(Mot_HFC, saveobject.Gains_HFC);
         SaveGains(Final, saveobject.Gains_Final);
     }
-    private void SaveGains(Transformer transformer, Gains gains)
+    private void SaveGains(Transformer transformer, GainSettings gains)
     {
         gains.Master = transformer.Gain_Master;
         gains.Sway = transformer.Gain_Sway;
@@ -157,14 +157,14 @@ public class LoadSaveGains: MonoBehaviour
     [System.Serializable]
     public class SaveObject
     {
-        public Gains Gains_Height = new Gains();
-        public Gains Gains_LFC = new Gains();
-        public Gains Gains_HFC = new Gains();
-        public Gains Gains_Final = new Gains();
+        public GainSettings Gains_Height = new GainSettings();
+        public GainSettings Gains_LFC = new GainSettings();
+        public GainSettings Gains_HFC = new GainSettings();
+        public GainSettings Gains_Final = new GainSettings();
     }
 
     [System.Serializable]
-    public class Gains
+    public class GainSettings
     {
         public float Master;
 

@@ -125,7 +125,7 @@ public class LoadSaveRigConfig : MonoBehaviour
     }
 
     ////////////  Save DATA  ////////////
-    void WriteDataInObject()
+    private void WriteDataInObject()
     {
         saveobject.base_settings.AngleAlpha = Base.Alpha;
         saveobject.base_settings.Radius = Base.Radius;
