@@ -46,4 +46,4 @@ MonoBehaviour:
   Type: Unknown
   CurrentValue: 0
   Unit: Unitless
-  MemTime: 5000
+  EMA_alpha: 1
