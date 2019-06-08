@@ -38,15 +38,7 @@ public class StreamCompressor : MonoBehaviour
 
         OutStream = GetComponent<Stream>();
 
-        switch (Type)
-        {
-            case CompressionType.Tangent:
-                OutStream.name = InStream.name + "_TAN";                    //Add your Tag.
-                break;
-            case CompressionType.Other:
-                OutStream.name = InStream.name + "_OTHR";
-                break;
-        }
+        OutStream.name = InStream.name + "_COMP";                    //Add your Tag.
     }
     void FixedUpdate()
     {
