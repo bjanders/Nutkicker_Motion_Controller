@@ -87,9 +87,34 @@ public class Transformer : MonoBehaviour
     }
     //////////////////////////////////////////////////////////
     
-    public void On_Height_Changed(string s)
+    public void On_OffsetHeaveChanged(string s)
     {
-        float value = Convert.ToSingle(s, GlobalVars.myNumberFormat());
-        Offset_Heave = value;
+        Offset_Heave = Convert.ToSingle(s, GlobalVars.myNumberFormat());
+    }
+
+    public void On_GainSwayChanged(string s)
+    {
+        Gain_Sway = Convert.ToSingle(s, GlobalVars.myNumberFormat());
+    }
+    public void On_GainHeaveChanged(string s)
+    {
+        Gain_Heave = Convert.ToSingle(s, GlobalVars.myNumberFormat());
+    }
+    public void On_GainSurgeChanged(string s)
+    {
+        Gain_Surge = Convert.ToSingle(s, GlobalVars.myNumberFormat());
+    }
+
+    public void On_GainYawChanged(string s)
+    {
+        Gain_Yaw = Convert.ToSingle(s, GlobalVars.myNumberFormat());
+    }
+    public void On_GainPitchChanged(string s)
+    {
+        Gain_Pitch = Convert.ToSingle(s, GlobalVars.myNumberFormat());
+    }
+    public void On_GainRollChanged(string s)
+    {
+        Gain_Roll = Convert.ToSingle(s, GlobalVars.myNumberFormat());
     }
 }
