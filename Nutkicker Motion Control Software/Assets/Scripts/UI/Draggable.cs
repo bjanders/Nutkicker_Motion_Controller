@@ -8,7 +8,7 @@ public class Draggable : MonoBehaviour, IDragHandler
     RectTransform transform = null;
 
     // Use this for initialization
-    void Start()
+    void Awake()
     {
         transform = GetComponent<RectTransform>();
     }
@@ -20,7 +20,6 @@ public class Draggable : MonoBehaviour, IDragHandler
 
     public void OnMouseDown()
     {
-        Debug.Log("Mouse Down");
         transform.SetAsLastSibling();
     }
 }

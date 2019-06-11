@@ -73,6 +73,10 @@ public class LowPassNthOrder : MonoBehaviour
     }
     /////////////////////////////////////////////////////////////////////////
     
+    public void On_AlphaInputChanged(string s)
+    {
+        EMA_alpha = Convert.ToSingle(s, GlobalVars.myNumberFormat());
+    }
 }
 
 public class LowPassModular

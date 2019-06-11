@@ -43,6 +43,11 @@ public class HighPass : MonoBehaviour
     }
     /////////////////////////////////////////////////////////////////////////
 
+    public void On_AlphaInputChanged(string s)
+    {
+        EMA_alpha = Convert.ToSingle(s, GlobalVars.myNumberFormat());
+    }
+
     private void Watchdog()
     {
         if (stopwatch.ElapsedMilliseconds > WatchdogTimer)
