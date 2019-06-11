@@ -66,6 +66,9 @@ public class PanelMotionTuning : MonoBehaviour
         HP_Roll_HFC.text =  Wx_HP.EMA_alpha.ToString(GlobalVars.myNumberFormat());
         HP_Yaw_HFC.text =   Wy_HP.EMA_alpha.ToString(GlobalVars.myNumberFormat());
         HP_Pitch_HFC.text = Wz_HP.EMA_alpha.ToString(GlobalVars.myNumberFormat());
+        HP_Surge_HFC.text = Ax_HP.EMA_alpha.ToString(GlobalVars.myNumberFormat());
+        HP_Heave_HFC.text = Ay_HP.EMA_alpha.ToString(GlobalVars.myNumberFormat());
+        HP_Sway_HFC.text =  Az_HP.EMA_alpha.ToString(GlobalVars.myNumberFormat());
 
         //---------LowPass--------
         LP_Roll_HFC.text =  Wx_HP_LP1.EMA_alpha.ToString(GlobalVars.myNumberFormat());
