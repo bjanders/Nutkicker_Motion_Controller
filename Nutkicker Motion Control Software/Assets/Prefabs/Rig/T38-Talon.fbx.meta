@@ -1,57 +1,155 @@
 fileFormatVersion: 2
 guid: 187a79c7d27954040b7e8ee9521d969c
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: COCKPIT
-    100002: CONTROL
-    100004: GEAR_FW
-    100006: GEAR_R
-    100008: GLASS_1
-    100010: GLASS_2
-    100012: GLASS_3
-    100014: MARCO_1
-    100016: MARCO_2
-    100018: //RootNode
-    400000: COCKPIT
-    400002: CONTROL
-    400004: GEAR_FW
-    400006: GEAR_R
-    400008: GLASS_1
-    400010: GLASS_2
-    400012: GLASS_3
-    400014: MARCO_1
-    400016: MARCO_2
-    400018: //RootNode
-    2100000: fuselaje__TALTS.jpg
-    2100002: GLASS__TALTS.jpg
-    2300000: COCKPIT
-    2300002: CONTROL
-    2300004: GEAR_FW
-    2300006: GEAR_R
-    2300008: GLASS_1
-    2300010: GLASS_2
-    2300012: GLASS_3
-    2300014: MARCO_1
-    2300016: MARCO_2
-    3300000: COCKPIT
-    3300002: CONTROL
-    3300004: GEAR_FW
-    3300006: GEAR_R
-    3300008: GLASS_1
-    3300010: GLASS_2
-    3300012: GLASS_3
-    3300014: MARCO_1
-    3300016: MARCO_2
-    4300000: CONTROL
-    4300002: COCKPIT
-    4300004: MARCO_1
-    4300006: GLASS_2
-    4300008: GEAR_FW
-    4300010: MARCO_2
-    4300012: GLASS_3
-    4300014: GLASS_1
-    4300016: GEAR_R
+  serializedVersion: 25
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: COCKPIT
+  - first:
+      1: 100002
+    second: CONTROL
+  - first:
+      1: 100004
+    second: GEAR_FW
+  - first:
+      1: 100006
+    second: GEAR_R
+  - first:
+      1: 100008
+    second: GLASS_1
+  - first:
+      1: 100010
+    second: GLASS_2
+  - first:
+      1: 100012
+    second: GLASS_3
+  - first:
+      1: 100014
+    second: MARCO_1
+  - first:
+      1: 100016
+    second: MARCO_2
+  - first:
+      1: 100018
+    second: //RootNode
+  - first:
+      4: 400000
+    second: COCKPIT
+  - first:
+      4: 400002
+    second: CONTROL
+  - first:
+      4: 400004
+    second: GEAR_FW
+  - first:
+      4: 400006
+    second: GEAR_R
+  - first:
+      4: 400008
+    second: GLASS_1
+  - first:
+      4: 400010
+    second: GLASS_2
+  - first:
+      4: 400012
+    second: GLASS_3
+  - first:
+      4: 400014
+    second: MARCO_1
+  - first:
+      4: 400016
+    second: MARCO_2
+  - first:
+      4: 400018
+    second: //RootNode
+  - first:
+      21: 2100000
+    second: fuselaje__TALTS.jpg
+  - first:
+      21: 2100002
+    second: GLASS__TALTS.jpg
+  - first:
+      23: 2300000
+    second: COCKPIT
+  - first:
+      23: 2300002
+    second: CONTROL
+  - first:
+      23: 2300004
+    second: GEAR_FW
+  - first:
+      23: 2300006
+    second: GEAR_R
+  - first:
+      23: 2300008
+    second: GLASS_1
+  - first:
+      23: 2300010
+    second: GLASS_2
+  - first:
+      23: 2300012
+    second: GLASS_3
+  - first:
+      23: 2300014
+    second: MARCO_1
+  - first:
+      23: 2300016
+    second: MARCO_2
+  - first:
+      33: 3300000
+    second: COCKPIT
+  - first:
+      33: 3300002
+    second: CONTROL
+  - first:
+      33: 3300004
+    second: GEAR_FW
+  - first:
+      33: 3300006
+    second: GEAR_R
+  - first:
+      33: 3300008
+    second: GLASS_1
+  - first:
+      33: 3300010
+    second: GLASS_2
+  - first:
+      33: 3300012
+    second: GLASS_3
+  - first:
+      33: 3300014
+    second: MARCO_1
+  - first:
+      33: 3300016
+    second: MARCO_2
+  - first:
+      43: 4300000
+    second: CONTROL
+  - first:
+      43: 4300002
+    second: COCKPIT
+  - first:
+      43: 4300004
+    second: MARCO_1
+  - first:
+      43: 4300006
+    second: GLASS_2
+  - first:
+      43: 4300008
+    second: GEAR_FW
+  - first:
+      43: 4300010
+    second: MARCO_2
+  - first:
+      43: 4300012
+    second: GLASS_3
+  - first:
+      43: 4300014
+    second: GLASS_1
+  - first:
+      43: 4300016
+    second: GEAR_R
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -84,7 +182,7 @@ ModelImporter:
   meshes:
     lODScreenPercentages: []
     globalScale: 1
-    meshCompression: 0
+    meshCompression: 3
     addColliders: 0
     useSRGBMaterialColor: 1
     importVisibility: 1
@@ -94,18 +192,19 @@ ModelImporter:
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -114,10 +213,11 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
-  importAnimation: 1
+  referencedClips: []
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -127,6 +227,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
