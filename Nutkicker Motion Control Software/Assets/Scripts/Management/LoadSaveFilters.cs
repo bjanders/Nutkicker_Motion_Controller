@@ -7,6 +7,7 @@ using SFB;      //Standalone File Browser from GitHub (https://github.com/gkngkc
 [ExecuteInEditMode]
 public class LoadSaveFilters: MonoBehaviour
 {
+    [Header("Filters")]
     [SerializeField] HighPass Wx_HP;
     [SerializeField] LowPassNthOrder Wx_HP_LP1;
 
@@ -28,8 +29,9 @@ public class LoadSaveFilters: MonoBehaviour
     [SerializeField] HighPass Az_HP;
     [SerializeField] LowPassNthOrder Az_HP_LP2;
 
-    //---------------------------------------------------------------------
-
+    [Header("Input Panel")]
+    [SerializeField] PanelMotionTuning panelMotionTuning;
+    [Header("File")]
     [SerializeField] string FileName;
     [ShowOnly][SerializeField] string FileExtension;
 
@@ -100,6 +102,8 @@ public class LoadSaveFilters: MonoBehaviour
         
         saveobject = ReadObjectFromFile(FilePath);
         ReadDataFromObject();
+
+        panelMotionTuning.UpdateInputs();
     }
     private void OnApplicationQuit()
     {
@@ -172,10 +176,10 @@ public class LoadSaveFilters: MonoBehaviour
         saveobject.Setting_Ax_HP_LP2 = Ax_HP_LP2.EMA_alpha;
         saveobject.Setting_Ax_LP3 = Ax_LP3.EMA_alpha;
 
-        saveobject.Setting_Ay_HP_LP2 = Ax_HP_LP2.EMA_alpha;
+        saveobject.Setting_Ay_HP_LP2 = Ay_HP_LP2.EMA_alpha;
         //saveobject.Setting_Ay_LP3 = Ax_LP3.EMA_alpha;             //unused
 
-        saveobject.Setting_Az_HP_LP2 = Ax_HP_LP2.EMA_alpha;
+        saveobject.Setting_Az_HP_LP2 = Az_HP_LP2.EMA_alpha;
         saveobject.Setting_Az_LP3 = Az_LP3.EMA_alpha;
     }
     private void WriteObjectToFile(string path)

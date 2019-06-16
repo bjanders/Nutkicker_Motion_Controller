@@ -93,7 +93,5 @@ public class PanelMotionTuning : MonoBehaviour
 
         Gain_Pitch_LFC.text = transformer_LFC.Gain_Pitch.ToString(GlobalVars.myNumberFormat());
         Gain_Roll_LFC.text = transformer_LFC.Gain_Roll.ToString(GlobalVars.myNumberFormat());
-
-
     }
 }

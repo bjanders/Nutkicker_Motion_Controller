@@ -11,6 +11,9 @@ public class LoadSaveGains: MonoBehaviour
     [SerializeField] Transformer Mot_LFC;
     [SerializeField] Transformer Mot_HFC;
     [SerializeField] Transformer Final;
+    [Header("Input Panel")]
+    [SerializeField] PanelMotionTuning panelMotionTuning;  
+    [Header("File")]
     [SerializeField] string FileName = "GainSettings";
     [ShowOnly] [SerializeField] string FileExtension = "gains";
 
@@ -33,6 +36,8 @@ public class LoadSaveGains: MonoBehaviour
             ReadDataFromObject();
             Debug.Log("Loading Gains:" + LoadFileName);
         }
+
+        panelMotionTuning.UpdateInputs();
     }
 
     public void OnClickSave()
@@ -78,6 +83,8 @@ public class LoadSaveGains: MonoBehaviour
         
         saveobject = ReadObjectFromFile(FilePath);
         ReadDataFromObject();
+
+        panelMotionTuning.UpdateInputs();
     }
     private void OnApplicationQuit()
     {
