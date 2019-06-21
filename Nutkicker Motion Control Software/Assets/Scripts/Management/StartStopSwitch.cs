@@ -19,13 +19,13 @@ public class StartStopSwitch : MonoBehaviour
     [SerializeField] public StartStopStatus status;
     [SerializeField] public float transitionTime = 5.0f;
 
-    private LerpToPosition lerpPause;
-    private LerpToPosition lerpPhysical;
+    private Lerp2Target lerpPause;
+    private Lerp2Target lerpPhysical;
 
     private void Start()
     {
-        lerpPause = platform_Pause.GetComponent<LerpToPosition>();
-        lerpPhysical = platform_Physical.GetComponent<LerpToPosition>();
+        lerpPause = platform_Pause.GetComponent<Lerp2Target>();
+        lerpPhysical = platform_Physical.GetComponent<Lerp2Target>();
 
         status = StartStopStatus.Park;
     }
@@ -60,7 +60,7 @@ public class StartStopSwitch : MonoBehaviour
     }
 
     ///////////---COROUTINES---//////////////
-    IEnumerator Motion2Pause(LerpToPosition lerp)
+    IEnumerator Motion2Pause(Lerp2Target lerp)
     {
         status = StartStopStatus.Transit;
 
@@ -74,7 +74,7 @@ public class StartStopSwitch : MonoBehaviour
 
         status = StartStopStatus.Pause;
     }
-    IEnumerator Pause2Park(LerpToPosition lerp)
+    IEnumerator Pause2Park(Lerp2Target lerp)
     {
         status = StartStopStatus.Transit;
 
@@ -87,7 +87,7 @@ public class StartStopSwitch : MonoBehaviour
         lerp.Percentage = 0;
         status = StartStopStatus.Park;
     }
-    IEnumerator Park2Pause(LerpToPosition lerp)
+    IEnumerator Park2Pause(Lerp2Target lerp)
     {
         status = StartStopStatus.Transit;
 
@@ -100,7 +100,7 @@ public class StartStopSwitch : MonoBehaviour
         lerp.Percentage = 1;
         status = StartStopStatus.Pause;
     }
-    IEnumerator Pause2Motion(LerpToPosition lerp)
+    IEnumerator Pause2Motion(Lerp2Target lerp)
     {
         status = StartStopStatus.Transit;
 
@@ -114,5 +114,5 @@ public class StartStopSwitch : MonoBehaviour
 
         status = StartStopStatus.Motion;
     }
-   
+
 }

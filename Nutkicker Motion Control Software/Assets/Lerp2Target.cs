@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteInEditMode]
-public class LerpToPosition : MonoBehaviour
+public class Lerp2Target : MonoBehaviour
 {
     [SerializeField] Transform StartTransform;
     [SerializeField] Transform EndTransform;
