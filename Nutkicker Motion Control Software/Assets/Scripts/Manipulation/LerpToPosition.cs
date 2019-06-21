@@ -7,7 +7,7 @@ public class LerpToPosition : MonoBehaviour
 {
     [SerializeField] Transform StartTransform;
     [SerializeField] Transform EndTransform;
-    [SerializeField] [Range(0.0f, 1.0f)] float Percentage;
+    [SerializeField] [Range(0.0f, 1.0f)] public float Percentage;
 
     void Update()
     {
