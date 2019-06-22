@@ -12,7 +12,7 @@ public enum StartStopStatus
 }
 
 [ExecuteInEditMode]
-public class StartStopSwitch : MonoBehaviour
+public class StartStopLogic : MonoBehaviour
 {
     [SerializeField] public Platform platform_Pause;
     [SerializeField] public Platform platform_Physical;

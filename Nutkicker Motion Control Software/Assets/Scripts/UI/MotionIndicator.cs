@@ -16,7 +16,7 @@ public class MotionIndicator : MonoBehaviour
     [SerializeField] private Color Color_Park;
     [SerializeField] private Color Color_Transit;
 
-    [SerializeField] private StartStopSwitch startstopswitch;
+    [SerializeField] private StartStopLogic startstoplogic;
 
     private void Start()
     {
@@ -24,7 +24,7 @@ public class MotionIndicator : MonoBehaviour
     }
     void FixedUpdate()
     {
-        switch (startstopswitch.SwitchStatus)
+        switch (startstoplogic.SwitchStatus)
         {
             case StartStopStatus.Motion:
                 image.color = Color_Motion;

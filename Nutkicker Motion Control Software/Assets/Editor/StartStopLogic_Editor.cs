@@ -2,14 +2,14 @@
 using UnityEditor;
 
 [ExecuteInEditMode]
-[CustomEditor(typeof(StartStopSwitch))]
+[CustomEditor(typeof(StartStopLogic))]
 public class StartStopSwitch_Editor : Editor
 {
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
 
-        StartStopSwitch startstopswitch = (StartStopSwitch)target;
+        StartStopLogic startstopswitch = (StartStopLogic)target;
 
         if (GUILayout.Button("Motion-->Pause"))
         {
