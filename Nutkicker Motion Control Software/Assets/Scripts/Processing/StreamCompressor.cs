@@ -38,7 +38,7 @@ public class StreamCompressor : MonoBehaviour
 
         OutStream = GetComponent<Stream>();
 
-        OutStream.name = InStream.name + "_COMP";                    //Add your Tag.
+        OutStream.name = InStream.name + "_COMP";                               //Add your Tag.
     }
     void FixedUpdate()
     {
