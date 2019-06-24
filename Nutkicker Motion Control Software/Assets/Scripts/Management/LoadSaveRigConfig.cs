@@ -33,7 +33,7 @@ public class LoadSaveRigConfig : MonoBehaviour
         {
             saveobject = ReadObjectFromFile(FilePath);
             ReadDataFromObject();
-            Debug.Log("Loading Rig Config:" + LoadFileName);
+            //Debug.Log("Loading Rig Config:" + LoadFileName);
         }
 
         PanelRigConfig.UpdateInputs();

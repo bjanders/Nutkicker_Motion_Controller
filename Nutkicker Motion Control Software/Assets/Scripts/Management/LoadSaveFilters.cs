@@ -55,7 +55,7 @@ public class LoadSaveFilters: MonoBehaviour
         {
             saveobject = ReadObjectFromFile(FilePath);
             ReadDataFromObject();
-            Debug.Log("Loading Filters:" + LoadFileName);
+            //Debug.Log("Loading Filters:" + LoadFileName);
         }
     }
 

@@ -34,7 +34,7 @@ public class LoadSaveGains: MonoBehaviour
         {
             saveobject = ReadObjectFromFile(FilePath);
             ReadDataFromObject();
-            Debug.Log("Loading Gains:" + LoadFileName);
+            //Debug.Log("Loading Gains:" + LoadFileName);
         }
 
         panelMotionTuning.UpdateInputs();

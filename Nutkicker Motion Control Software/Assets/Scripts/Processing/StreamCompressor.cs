@@ -47,7 +47,7 @@ public class StreamCompressor : MonoBehaviour
         switch (Type)
         {
             case CompressionType.Tangent:
-                Compression_Tanget();                    
+                Compression_Tanget();
                 break;
             case CompressionType.Other:
                 Compression_Other();
@@ -58,13 +58,13 @@ public class StreamCompressor : MonoBehaviour
         OutStream.Push(datapoint);
     }
     /////////////////////////////////////////////////////////////////////////
-    
+
     private void Compression_Tanget()
     {
         Utilisation = Input / LargeInput;
         float Atan = Mathf.Atan(Utilisation * Compression) / (Mathf.PI / 2);
         float UncorrectedOutput = 2 * Atan * LargeInput;
-        
+
         Output = UncorrectedOutput * Correction();
         factor = Output / Input;                            //FYI
     }
@@ -73,7 +73,7 @@ public class StreamCompressor : MonoBehaviour
     {
         throw new NotImplementedException();
     }
-    
+
     private float Correction()
     {
         //This function calculates a correction value to stretch the curve back up, so that a "LargeInput" generates an equally "LargeOutput"
@@ -83,3 +83,41 @@ public class StreamCompressor : MonoBehaviour
         return LargeInput / UncorrectedOutput;
     }
 }
+
+
+
+
+
+
+
+//Pseudo Code:
+//class StreamCompressor
+//{
+
+//    float LargeInput = 10.0f;                        //Pick a typically "large Input"
+//    float Coefficient = 0.01f;                       //How much sensitivity do you want around zero? 0.01 = 100%, 1 = 126%, 5 = 363%
+
+//    float Input;
+//    float Utilisation;
+//    float Output;
+
+//    /////////////////////////////////////////////////////////////////////////
+
+//    void Compress()
+//    {
+//        Utilisation = Input / LargeInput;
+//        float Atan = Mathf.Atan(Utilisation * Coefficient) / (Mathf.PI / 2);
+//        float UncorrectedOutput = 2 * Atan * LargeInput;
+
+//        Output = UncorrectedOutput * Correction();
+//    }
+
+//    float Correction()
+//    {
+//        //This function calculates a correction value to stretch the curve back up, so that a "LargeInput" generates an equally "LargeOutput"
+//        float Atan = Mathf.Atan(Coefficient) / (Mathf.PI / 2);
+//        float UncorrectedOutput = 2 * Atan * LargeInput;
+
+//        return LargeInput / UncorrectedOutput;
+//    }
+//}

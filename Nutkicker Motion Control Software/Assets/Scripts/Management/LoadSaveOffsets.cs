@@ -36,7 +36,7 @@ public class LoadSaveOffsets : MonoBehaviour
         {
             saveobject = ReadObjectFromFile(FilePath);
             ReadDataFromObject();
-            Debug.Log("Loading Offsets:" + LoadFileName);
+           // Debug.Log("Loading Offsets:" + LoadFileName);
         }
 
         paneloffsets.UpdateInputs();
