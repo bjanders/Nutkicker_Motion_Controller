@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
+using System;
 using System.IO.Ports;
 using TMPro;
+using System.Text;
 
 [ExecuteInEditMode]
 public class SerialConnector : MonoBehaviour
@@ -8,24 +10,23 @@ public class SerialConnector : MonoBehaviour
     [SerializeField] public string TestMessage;
     [SerializeField] public string COM_Port;
     [SerializeField] public int BaudRate;
+    [SerializeField] public int WriteTimeout;
     [SerializeField] public bool IsOpen;
     [SerializeField] public TMP_Dropdown dropdown;
-    [SerializeField] private MessageGenerator messagegenerator;
+    [SerializeField] private MessageGenerator_AMC1280 messagegenerator;
 
     public SerialPort serialport = new SerialPort();
 
     /////////////////////////////////////////////////////////////////////////
     private void Start()
     {
-        messagegenerator = GetComponent<MessageGenerator>();
+        messagegenerator = GetComponent<MessageGenerator_AMC1280>();
 
         TestMessage = "<Test message>";
         COM_Port = "Not assigned";
         BaudRate = 115200;
+        WriteTimeout = 2000;
         IsOpen = false;
-
-        serialport.BaudRate = BaudRate;
-        serialport.PortName = COM_Port;
     }
     private void FixedUpdate()
     {
@@ -47,7 +48,7 @@ public class SerialConnector : MonoBehaviour
     }
     public void OnClick_Write()
     {
-        Write(TestMessage);
+        Write(Encoding.ASCII.GetBytes(TestMessage));
     }
     public void OnClick_Reset()
     {
@@ -65,7 +66,10 @@ public class SerialConnector : MonoBehaviour
             else
             {
                 COM_Port = dropdown.options[dropdown.value].text;
+
                 serialport = new SerialPort(COM_Port, BaudRate);
+                serialport.WriteTimeout = WriteTimeout;
+
                 serialport.Open();
 
                 Debug.Log("Serialport opened: " + COM_Port);
@@ -99,13 +103,13 @@ public class SerialConnector : MonoBehaviour
         }
             
     }
-    public void Write(string msg)
+    public void Write(byte[] msg)
     {
         if (Application.isPlaying)
         {
             if (serialport.IsOpen)
             {
-                serialport.WriteLine(msg);
+                serialport.Write(msg, 0, msg.Length);
             }
             else
             {
