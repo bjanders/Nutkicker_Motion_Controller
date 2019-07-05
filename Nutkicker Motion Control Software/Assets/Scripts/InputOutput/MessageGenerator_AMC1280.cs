@@ -20,12 +20,14 @@ public class MessageGenerator_AMC1280 : MonoBehaviour
     [SerializeField] private byte[] A4;
     [SerializeField] private byte[] A5;
     [SerializeField] private byte[] A6;
+    [SerializeField] private byte[] Additionals;
     [ShowOnly][SerializeField] private byte[] EndBlock;
 
     private void Start()
     {
         Message = new byte[20];
         StartBlock = new byte[] {255, 255 };
+        Additionals = new byte[] { 0, 0, 0, 0 };
         EndBlock = new byte[]   {10, 13 };
     }
     void FixedUpdate()
@@ -55,10 +57,10 @@ public class MessageGenerator_AMC1280 : MonoBehaviour
         Message[11] = A5[1];
         Message[12] = A6[0];
         Message[13] = A6[1];
-        Message[14] = 0;
-        Message[15] = 0;
-        Message[16] = 0;
-        Message[17] = 0;
+        Message[14] = Additionals[0];
+        Message[15] = Additionals[1];
+        Message[16] = Additionals[2];
+        Message[17] = Additionals[3];
         Message[18] = EndBlock[0];
         Message[19] = EndBlock[1];
     }
