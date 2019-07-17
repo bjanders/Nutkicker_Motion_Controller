@@ -24,7 +24,7 @@ public class SerialConnector : MonoBehaviour
 
         TestMessage = "<Test message>";
         COM_Port = "Not assigned";
-        BaudRate = 115200;
+        BaudRate = 250000;
         WriteTimeout = 2000;
         IsOpen = false;
     }
@@ -109,7 +109,15 @@ public class SerialConnector : MonoBehaviour
         {
             if (serialport.IsOpen)
             {
-                serialport.Write(msg, 0, msg.Length);
+                try
+                {
+                    serialport.Write(msg, 0, msg.Length);
+                }
+                catch (Exception)
+                {
+                    Close();
+                }
+                
             }
             else
             {
