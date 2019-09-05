@@ -16,6 +16,7 @@ public class StartStopLogic : MonoBehaviour
 {
     [SerializeField] public Platform platform_Pause;
     [SerializeField] public Platform platform_Physical;
+    [SerializeField] public GameObject CoR;
     [SerializeField] public StartStopStatus SwitchStatus;
     [SerializeField] public float transitionTime = 5.0f;
 
@@ -63,6 +64,7 @@ public class StartStopLogic : MonoBehaviour
     IEnumerator Motion2Pause(Lerp2Target lerp)
     {
         //SwitchStatus = StartStopStatus.Transit;
+        CoR.SetActive(false);
 
         while (lerp.Percentage > 0)
         {
@@ -111,6 +113,8 @@ public class StartStopLogic : MonoBehaviour
             yield return null;
         }
         lerp.Percentage = 1;
+
+        CoR.SetActive(true);
 
         //SwitchStatus = StartStopStatus.Motion;
     }

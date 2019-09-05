@@ -28,6 +28,11 @@ public class Utility
         }
         return "No network adapter found";
     }
+    public static float InvertHeading(float hdg)
+    {
+        if (hdg < 180) return hdg + 180;
+        else return hdg - 180;
+    }
 }
 
 
