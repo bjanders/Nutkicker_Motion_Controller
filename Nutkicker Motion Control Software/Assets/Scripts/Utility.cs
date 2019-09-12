@@ -10,11 +10,11 @@ public class Utility
 {
     public static float DEG_from_RAD(float R)
     {
-        return Convert.ToSingle((360 * (R / 2 * Math.PI)));
+        return Convert.ToSingle(R / (2 * Math.PI) * 360);
     }
     public static float RAD_from_DEG(float D)
     {
-        return Convert.ToSingle( (D / 360) * 2 * Math.PI);
+        return Convert.ToSingle( (D / 360.0f) * 2 * Math.PI);
     }
     public static string GetLocalIPAddress()
     {
