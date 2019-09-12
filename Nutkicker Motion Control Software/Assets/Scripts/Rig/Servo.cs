@@ -21,7 +21,8 @@ public class Servo : MonoBehaviour
     [SerializeField] public ServoHandedness Handedness;
     [SerializeField] public float Azimuth;         //In degrees
     [SerializeField] public float Crank_Length;
-    [SerializeField] private float Crank_Angle;     //In degrees
+    [SerializeField] private float CrankAngleInternal;     //In degrees
+    [SerializeField] private float CrankAngleTransmitted;     //In degrees
     [SerializeField] private float Rod_Length;
     [Space]
     [SerializeField] private Vector3 Delta;
@@ -44,8 +45,10 @@ public class Servo : MonoBehaviour
 
         Crank_Rod_Joint.localPosition = new Vector3(Crank_Length * 20, 0, 0);
 
-        Crank_Angle = calculateAngle();
-        Axis.localEulerAngles = new Vector3(0, 0, Crank_Angle);
+        CrankAngleInternal = calculateAngle();
+        Axis.localEulerAngles = new Vector3(0, 0, CrankAngleInternal);
+
+        CrankAngleTransmitted = calculateAngleTramsmitted();
     }
 
     private float calculateAngle()
@@ -74,27 +77,49 @@ public class Servo : MonoBehaviour
             Temp_angle = 2.0 * (Math.Atan((2.0 * (double)Crank_Length * (double)Delta.y + 0.5 * RootTerm) / (Term4)));         //angle in RADIANS
         }
 
-        Crank_Angle = Utility.DEG_from_RAD((float)Temp_angle);                                                        //angle in DEGREES
+        CrankAngleInternal = Utility.DEG_from_RAD((float)Temp_angle);                                                        //angle in DEGREES
 
         //Do we have a valid result?
-        if (!float.IsNaN(Crank_Angle))
+        if (!float.IsNaN(CrankAngleInternal))
         {
             OutOfRange = false;
 
-            double Crank_x = Crank_Length * Mathf.Cos(Utility.RAD_from_DEG(Crank_Angle)) * COS_Azimuth;
-            double Crank_y = Crank_Length * Mathf.Sin(Utility.RAD_from_DEG(Crank_Angle));
-            double Crank_z = Crank_Length * Mathf.Cos(Utility.RAD_from_DEG(Crank_Angle)) * SIN_Azimuth;
+            double Crank_x = Crank_Length * Mathf.Cos(Utility.RAD_from_DEG(CrankAngleInternal)) * COS_Azimuth;
+            double Crank_y = Crank_Length * Mathf.Sin(Utility.RAD_from_DEG(CrankAngleInternal));
+            double Crank_z = Crank_Length * Mathf.Cos(Utility.RAD_from_DEG(CrankAngleInternal)) * SIN_Azimuth;
 
             Vector3 CrankVector = new Vector3((float)Crank_x, (float)Crank_y, (float)Crank_z);
 
-            LastGoodAngle = Crank_Angle;      //remember for next time
+            LastGoodAngle = CrankAngleInternal;      //remember for next time
         }
         else
         {
             OutOfRange = true;
-            Crank_Angle = LastGoodAngle;
+            CrankAngleInternal = LastGoodAngle;
         }
 
-        return Crank_Angle;     //in Degrees
+        return CrankAngleInternal;     //in Degrees
+    }
+
+    private float calculateAngleTramsmitted()
+    {
+        float tempangle = CrankAngleInternal;
+
+        if (Handedness == ServoHandedness.Right)
+        {
+            return CrankAngleInternal;
+        }
+        else
+        {
+            if (CrankAngleInternal < 0)
+            {
+                tempangle += 360;
+            }
+
+            tempangle -= 180;
+            tempangle *= -1;
+        }
+
+        return tempangle;
     }
 }
