@@ -17,6 +17,26 @@ public class Actuators : MonoBehaviour
     [SerializeField] public Actuator Act5;
     [SerializeField] public Actuator Act6;
 
+    [Header("Diagnostics")]
+    [Range(0, 1)] [SerializeField] private float Util_Act_1;
+    [Range(0, 1)] [SerializeField] private float Util_Act_2;
+    [Range(0, 1)] [SerializeField] private float Util_Act_3;
+    [Range(0, 1)] [SerializeField] private float Util_Act_4;
+    [Range(0, 1)] [SerializeField] private float Util_Act_5;
+    [Range(0, 1)] [SerializeField] private float Util_Act_6;
+
+
+    private void Update()
+    {
+        Util_Act_1 = Act1.Utilisation;
+        Util_Act_2 = Act2.Utilisation;
+        Util_Act_3 = Act3.Utilisation;
+        Util_Act_4 = Act4.Utilisation;
+        Util_Act_5 = Act5.Utilisation;
+        Util_Act_6 = Act6.Utilisation;
+    }
+
+
     public void OnMinLengthChanged(string value)
     {
         MinLength = Convert.ToSingle(value, GlobalVars.myNumberFormat());
