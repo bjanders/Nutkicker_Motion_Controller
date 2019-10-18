@@ -1,0 +1,38 @@
+{
+    "Gains_Height": {
+        "Master": 1.0,
+        "Sway": 0.0,
+        "Heave": 0.0,
+        "Surge": 0.0,
+        "Yaw": 0.0,
+        "Pitch": 0.0,
+        "Roll": 0.0
+    },
+    "Gains_LFC": {
+        "Master": 1.0,
+        "Sway": 0.0,
+        "Heave": 0.0,
+        "Surge": 0.0,
+        "Yaw": 0.0,
+        "Pitch": -16.84000015258789,
+        "Roll": 13.180000305175782
+    },
+    "Gains_HFC": {
+        "Master": 1.0,
+        "Sway": 0.9399999976158142,
+        "Heave": 0.10999999940395355,
+        "Surge": 6.0,
+        "Yaw": -1.7999999523162842,
+        "Pitch": -40.0,
+        "Roll": -26.0
+    },
+    "Gains_Final": {
+        "Master": 1.0,
+        "Sway": 0.0,
+        "Heave": 0.0,
+        "Surge": 0.0,
+        "Yaw": 0.0,
+        "Pitch": 0.0,
+        "Roll": 0.0
+    }
+}

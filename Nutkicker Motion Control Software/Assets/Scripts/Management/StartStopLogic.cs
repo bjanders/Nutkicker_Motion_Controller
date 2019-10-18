@@ -28,6 +28,9 @@ public class StartStopLogic : MonoBehaviour
         lerpPause = platform_Pause.GetComponent<Lerp2Target>();
         lerpPhysical = platform_Physical.GetComponent<Lerp2Target>();
 
+        lerpPause.Percentage = 0.0f;
+        lerpPhysical.Percentage = 0.0f;
+
         SwitchStatus = StartStopStatus.Park;
     }
 
