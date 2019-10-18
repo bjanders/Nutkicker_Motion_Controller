@@ -66,8 +66,6 @@ public class StartStopLogic : MonoBehaviour
     ///////////---COROUTINES---//////////////
     IEnumerator Motion2Pause(Lerp2Target lerp)
     {
-        CoR.SetActive(false);
-
         while (lerp.Percentage > 0)
         {
             lerp.Percentage -= (1.0f / transitionTime) * Time.deltaTime;
@@ -81,6 +79,7 @@ public class StartStopLogic : MonoBehaviour
     IEnumerator Pause2Park(Lerp2Target lerp)
     {
         SwitchStatus = StartStopStatus.Transit;
+        CoR.SetActive(false);
 
         while (lerp.Percentage > 0)
         {
@@ -102,6 +101,7 @@ public class StartStopLogic : MonoBehaviour
             yield return null;
         }
         lerp.Percentage = 1;
+        CoR.SetActive(true);
         SwitchStatus = StartStopStatus.Pause;
     }
     IEnumerator Pause2Motion(Lerp2Target lerp)
@@ -115,7 +115,5 @@ public class StartStopLogic : MonoBehaviour
             yield return null;
         }
         lerp.Percentage = 1;
-
-        CoR.SetActive(true);
     }
 }

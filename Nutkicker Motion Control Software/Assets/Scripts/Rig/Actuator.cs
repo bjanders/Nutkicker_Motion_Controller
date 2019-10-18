@@ -15,6 +15,7 @@ public class Actuator : MonoBehaviour
     [SerializeField] public float CurrentLength;
     [SerializeField] public float Extension;
     [Header("Utilisation")]
+    [Range(0,1)]
     [SerializeField] public float Utilisation;
     [SerializeField] public bool TooLong;
     [SerializeField] public bool TooShort;
