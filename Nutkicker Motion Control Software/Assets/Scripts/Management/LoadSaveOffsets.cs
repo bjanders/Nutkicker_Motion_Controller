@@ -27,7 +27,7 @@ public class LoadSaveOffsets : MonoBehaviour
         saveobject = new SaveObject();
 
         FileName = "OffsetSettings";
-        FileExtension = "Offsets";
+        FileExtension = "offsets";
 
         string LoadFileName = "LastQuit." + FileExtension;
         string FilePath = Path.Combine(Application.persistentDataPath, LoadFileName);

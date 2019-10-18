@@ -50,7 +50,6 @@ public class Processor : MonoBehaviour
         for (int i = 0; i < data.Length; i++)
         {
             data[i] = Convert.ToSingle(temp[i],GlobalVars.myNumberFormat());
- 
         }
 
         //then pack those into Datapoint-objects and push them into their Datastreams.

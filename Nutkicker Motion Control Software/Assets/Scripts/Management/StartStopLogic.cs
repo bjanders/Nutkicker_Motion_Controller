@@ -63,7 +63,6 @@ public class StartStopLogic : MonoBehaviour
     ///////////---COROUTINES---//////////////
     IEnumerator Motion2Pause(Lerp2Target lerp)
     {
-        //SwitchStatus = StartStopStatus.Transit;
         CoR.SetActive(false);
 
         while (lerp.Percentage > 0)
@@ -115,8 +114,5 @@ public class StartStopLogic : MonoBehaviour
         lerp.Percentage = 1;
 
         CoR.SetActive(true);
-
-        //SwitchStatus = StartStopStatus.Motion;
     }
-
 }
