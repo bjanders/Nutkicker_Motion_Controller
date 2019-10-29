@@ -66,7 +66,21 @@ public class MessageGenerator_AMC1280 : MonoBehaviour
     }
     private byte[] GenerateBytes(Actuator actuator)
     {
-        UInt16 value = (UInt16)(UInt16.MaxValue * actuator.Utilisation);
+        UInt16 value;
+
+        if (actuator.Utilisation <= 0.0f)
+        {
+            return new byte[2] { 0, 0 };        //return a min value
+        }
+        else if (actuator.Utilisation >= 1.0f)
+        {
+            return new byte[2] { 255, 255 };        //return a max value
+        }
+        else
+        {
+            value = (UInt16)(UInt16.MaxValue * actuator.Utilisation);
+        }
+
         Byte[] Bytes = BitConverter.GetBytes(value);
         Array.Reverse(Bytes);
 
