@@ -10,7 +10,7 @@ public class Draggable : MonoBehaviour, IDragHandler, IBeginDragHandler
 
     Vector2 OriginalWindowPosition;
     Vector2 DragStartPosition;
-    Vector2 Movement;
+    Vector2 DistToAnchor;
 
     void Awake()
     {
@@ -18,19 +18,20 @@ public class Draggable : MonoBehaviour, IDragHandler, IBeginDragHandler
     }
     public void OnMouseDown()
     {
-        transform.SetAsLastSibling();
-        OriginalWindowPosition = transform.position;        //remember well!
+        transform.SetAsLastSibling();                                       //to bring the window to the top of the stack 
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
+        OriginalWindowPosition = transform.position;                        
+        DistToAnchor = OriginalWindowPosition - eventData.position;         //the offset to the Anchor.
         DragStartPosition = eventData.position;
     }
     public void OnDrag(PointerEventData eventData)
     {
         if (isOnScreen(eventData))
         {
-            Movement = eventData.position - DragStartPosition;              //The movement of the MOUSE....
-            transform.position = OriginalWindowPosition + Movement;         //...is being added to the original window position
+            transform.position = eventData.position + DistToAnchor;
+            return;
         }
     }
     bool isOnScreen (PointerEventData eventData)
