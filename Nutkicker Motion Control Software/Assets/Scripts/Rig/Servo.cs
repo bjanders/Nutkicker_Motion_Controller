@@ -23,7 +23,7 @@ public class Servo : MonoBehaviour
     [SerializeField] public float Crank_Length;
     [SerializeField] private float CrankAngleInternal;     //In degrees
     [SerializeField] private float CrankAngleTransmitted;     //In degrees
-    [SerializeField] private float Rod_Length;
+    [SerializeField] public float Rod_Length;
     [Space]
     [SerializeField] private Vector3 Delta;
     [Space]

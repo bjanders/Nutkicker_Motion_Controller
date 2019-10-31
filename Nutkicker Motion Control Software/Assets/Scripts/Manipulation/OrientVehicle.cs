@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+[ExecuteInEditMode]
 public class OrientVehicle : MonoBehaviour
 {
     [Header("Vehicle")]

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 [ExecuteInEditMode]
@@ -10,16 +11,24 @@ public class PanelRigConfig : MonoBehaviour
     [SerializeField] private Platform platform_base;
     [SerializeField] private Platform platform_final;
     [SerializeField] private Actuators actuators;
-    [Header("Input fields")]
+    [SerializeField] private ServoManager servomanager;
+
+    [Header("Hardware")]
     [SerializeField] private TMP_InputField RadiusBase;
     [SerializeField] private TMP_InputField AlphaBase;
     [Space]
     [SerializeField] private TMP_InputField RadiusFinal;
     [SerializeField] private TMP_InputField AlphaFinal;
-    [Space]
+
+    [Header("Input Actuators")]
     [SerializeField] private TMP_InputField ActuatorMin;
     [SerializeField] private TMP_InputField ActuatorMax;
 
+    [Header("Input Cranks")]
+    [SerializeField] private TMP_InputField Azimuth;
+    [SerializeField] private TMP_InputField Crank_length;
+    [SerializeField] private TMP_InputField Rod_length;
+    [SerializeField] private Toggle FlipCranks;
 
     private void Start()
     {
@@ -36,5 +45,9 @@ public class PanelRigConfig : MonoBehaviour
 
         ActuatorMin.text = actuators.MinLength.ToString(GlobalVars.myNumberFormat());
         ActuatorMax.text = actuators.MaxLength.ToString(GlobalVars.myNumberFormat());
+
+        Azimuth.text = servomanager.azimuth.ToString(GlobalVars.myNumberFormat());
+        Crank_length.text = servomanager.crank_Length.ToString(GlobalVars.myNumberFormat());
+        Rod_length.text = servomanager.rod_Length.ToString(GlobalVars.myNumberFormat());
     }
 }

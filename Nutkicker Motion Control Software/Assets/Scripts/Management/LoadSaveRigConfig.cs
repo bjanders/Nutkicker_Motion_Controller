@@ -10,6 +10,7 @@ public class LoadSaveRigConfig : MonoBehaviour
     [SerializeField] Platform Base;
     [SerializeField] Platform Final;
     [SerializeField] Actuators actuators;
+    [SerializeField] ServoManager servomanager;
     [Header("Input Panel")]
     [SerializeField] PanelRigConfig PanelRigConfig;
     [Header("File")]
@@ -122,6 +123,11 @@ public class LoadSaveRigConfig : MonoBehaviour
         actuators.Diameter = saveobject.actuator_settings.Diameter;
         actuators.MinLength = saveobject.actuator_settings.MinLength;
         actuators.MaxLength = saveobject.actuator_settings.MaxLength;
+
+        servomanager.azimuth = saveobject.crankarm_settings.Azimuth;
+        servomanager.crank_Length = saveobject.crankarm_settings.CrankLength;
+        servomanager.rod_Length = saveobject.crankarm_settings.RodLength;
+        servomanager.FlipCranks = saveobject.crankarm_settings.IsFlipped;
     }
 
     ////////////  Save DATA  ////////////
@@ -136,6 +142,11 @@ public class LoadSaveRigConfig : MonoBehaviour
         saveobject.actuator_settings.Diameter = actuators.Diameter;
         saveobject.actuator_settings.MinLength = actuators.MinLength;
         saveobject.actuator_settings.MaxLength = actuators.MaxLength;
+
+        saveobject.crankarm_settings.Azimuth = servomanager.azimuth;
+        saveobject.crankarm_settings.CrankLength = servomanager.crank_Length;
+        saveobject.crankarm_settings.RodLength = servomanager.rod_Length;
+        saveobject.crankarm_settings.IsFlipped = servomanager.FlipCranks;
     }
     private void WriteObjectToFile(string path)
     {
@@ -154,7 +165,10 @@ public class LoadSaveRigConfig : MonoBehaviour
         public PlatformSettings base_settings = new PlatformSettings();
         public PlatformSettings final_settings = new PlatformSettings();
         public ActuatorSettings actuator_settings = new ActuatorSettings();
-    }
+
+        public bool isCrankArmSystem = false;
+        public CrankArmSettings crankarm_settings = new CrankArmSettings();
+            }
 
     [System.Serializable]
     public class PlatformSettings
@@ -169,6 +183,15 @@ public class LoadSaveRigConfig : MonoBehaviour
         public float Diameter;
         public float MinLength;
         public float MaxLength;
+    }
+
+    [System.Serializable]
+    public class CrankArmSettings
+    {
+        public float Azimuth;
+        public float CrankLength;
+        public float RodLength;
+        public bool IsFlipped;
     }
 }
 

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,11 +27,13 @@ public class ServoManager : MonoBehaviour
     [SerializeField] Transform Cnx_Upr5;
     [SerializeField] Transform Cnx_Upr6;
     [Space]
-    [Range(0,0.5f)]
-    [SerializeField] float crank_Length;
-    [SerializeField] float Azimuth;         //The Azimuth of Servo Nr.1
-    [SerializeField] bool FlipDirections;
+    [SerializeField] public float azimuth;         //The Azimuth of Servo Nr.1
+    [Range(0, 0.5f)]
+    [SerializeField] public float crank_Length;    //ALL crank lenghts are equal. Set them here!
+    [SerializeField] public float rod_Length;      //ALL rod lenghts are equal. Set them here!
+    [SerializeField] public bool FlipCranks;   //Do you need the "other" solution?
 
+    //----------------------------------------------------
     void Start()
     {
         Servo1.BottomJoint = Cnx_Low1;
@@ -57,7 +60,7 @@ public class ServoManager : MonoBehaviour
         Servo5.Crank_Length = crank_Length;
         Servo6.Crank_Length = crank_Length;
 
-        if (FlipDirections == true)
+        if (FlipCranks == true)
         {
             Servo1.Handedness = ServoHandedness.Right;
             Servo2.Handedness = ServoHandedness.Left;
@@ -76,10 +79,32 @@ public class ServoManager : MonoBehaviour
             Servo6.Handedness = ServoHandedness.Right;
         }
 
-        Set_Azimuth();
+        Set_Azimuth(azimuth);
+        Set_RodLength(rod_Length);
+    }
+    //----------------------------------------------------
+
+    public void OnAzimuthInputChanged(string value)
+    {
+        float f = Convert.ToSingle(value, GlobalVars.myNumberFormat());
+        azimuth = f;
+    }
+    public void OnCrankLengthInputChanged(string value)
+    {
+        float f = Convert.ToSingle(value, GlobalVars.myNumberFormat());
+        crank_Length = f;
+    }
+    public void OnRodLengthInputChanged(string value)
+    {
+        float f = Convert.ToSingle(value, GlobalVars.myNumberFormat());
+        rod_Length = f;
+    }
+    public void OnFlipCrankInputChanged(bool b)
+    {
+        FlipCranks = b;
     }
 
-    void Set_Azimuth()
+    void Set_Azimuth(float f)
     {
         //Base directions:
         float Line1 = 240;
@@ -87,7 +112,7 @@ public class ServoManager : MonoBehaviour
         float Line3 = 120;
 
         //Derviation from base direction:
-        float deviation = Azimuth - 240;
+        float deviation = f - 240;
 
         //calculate individual azimuths
         Servo1.Azimuth = Line1 + deviation;
@@ -96,6 +121,15 @@ public class ServoManager : MonoBehaviour
         Servo4.Azimuth = Line2 - deviation;
         Servo5.Azimuth = Line3 + deviation;
         Servo6.Azimuth = Line3 - deviation;
+    }
+    void Set_RodLength(float f)
+    {
+        Servo1.Rod_Length = f;
+        Servo2.Rod_Length = f;
+        Servo3.Rod_Length = f;
+        Servo4.Rod_Length = f;
+        Servo5.Rod_Length = f;
+        Servo6.Rod_Length = f;
     }
 
 }
