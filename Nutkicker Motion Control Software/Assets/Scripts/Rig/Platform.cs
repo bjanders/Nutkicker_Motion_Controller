@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using QuickPrimitives;
 using System;
 using System.Globalization;
 using UnityEngine.Events;
@@ -35,7 +34,6 @@ public class Platform : MonoBehaviour
     
     void Update()
     {
-        ScaleToSize();
         CalculateAllAngles();
         DrawAllConnectors();
     }
@@ -62,24 +60,19 @@ public class Platform : MonoBehaviour
     }
     void DrawSingleConnectorAtAngle(Transform TF, float angle_deg)
     {
-        float radius = GetComponent<QcTorusMesh>().properties.radius;
+        //float radius = GetComponent<QcTorusMesh>().properties.radius;
         //float angle_rad = (angle_deg / 360) * 2 * Mathf.PI;
         float angle_rad = Utility.RAD_from_DEG(angle_deg);
 
-        float x = Mathf.Sin(angle_rad) * radius;
+        float x = Mathf.Sin(angle_rad) * Radius;
         float y = 0;
-        float z = Mathf.Cos(angle_rad) * radius;
+        float z = Mathf.Cos(angle_rad) * Radius;
 
         if (TF != null)
         {
             TF.localPosition = new Vector3(x,y,z);
         }
         
-    }
-
-    public void ScaleToSize()
-    {
-        GetComponent<QcTorusMesh>().properties.radius = Radius;
     }
 
     public void OnAlphaChanged(string value)

@@ -6,7 +6,7 @@ public class QuitGame : MonoBehaviour
 {
     private void Start()
     {
-        Application.targetFrameRate = 100;
+        Application.targetFrameRate = 1000;
     }
     void Update()
     {

@@ -22,13 +22,17 @@ public class Draggable : MonoBehaviour, IDragHandler, IBeginDragHandler
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
-        OriginalWindowPosition = transform.position;                        
-        DistToAnchor = OriginalWindowPosition - eventData.position;         //the offset to the Anchor.
-        DragStartPosition = eventData.position;
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            OriginalWindowPosition = transform.position;                        
+            DistToAnchor = OriginalWindowPosition - eventData.position;         //the offset to the Anchor.
+            DragStartPosition = eventData.position;
+        }
+        
     }
     public void OnDrag(PointerEventData eventData)
     {
-        if (isOnScreen(eventData))
+        if (isOnScreen(eventData) && eventData.button == PointerEventData.InputButton.Left)
         {
             transform.position = eventData.position + DistToAnchor;
             return;
