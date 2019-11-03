@@ -1,1 +1,3 @@
-- Make crank arm systems selectable in the UI
++ Make crank arm systems selectable in the UI
+- Prepare crank arm data for serial port
+
