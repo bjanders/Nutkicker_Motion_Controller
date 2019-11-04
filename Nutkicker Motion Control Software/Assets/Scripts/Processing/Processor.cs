@@ -8,7 +8,7 @@ using UnityEngine;
 public class Processor : MonoBehaviour
 {
     [SerializeField] private AirlockReader airlockreader;
-    [Space]
+    [Header("Streams")]
     [SerializeField] private Stream Stream_IAS;
     [SerializeField] private Stream Stream_MACH;
     [SerializeField] private Stream Stream_TAS;
@@ -28,8 +28,6 @@ public class Processor : MonoBehaviour
     [SerializeField] private Stream Stream_Ax;
     [SerializeField] private Stream Stream_Ay;
     [SerializeField] private Stream Stream_Az;
-
-    [SerializeField] private Stream Stream_INDEX;
     [SerializeField] private string[] RawValueStrings = new string[18];
     [SerializeField] private float[] RawValueFloats = new float[18];
     
@@ -37,7 +35,7 @@ public class Processor : MonoBehaviour
     {
         ResetStreams();
     }
-    private void Update()
+    private void FixedUpdate()
     {
         ChopParseAndPackage(airlockreader.RawDataString);
     }
@@ -54,7 +52,7 @@ public class Processor : MonoBehaviour
         }
 
         //then pack those into Datapoint-objects and push them into their Datastreams.
-        float current_time = Time.fixedTime;                              //Time is needed for every Datapoint object as a timestamp
+        float current_time = Time.fixedTime;                        //Time is needed for every Datapoint object as a timestamp. "Fixed" to ensure constistent behaviour.
         
         //-----------AIRDATA----------------------------------      //Index[0-6] are airdata
         Stream_IAS.Push(new Datapoint(current_time, RawValueFloats[0],    "IAS","m/s"));
@@ -81,7 +79,7 @@ public class Processor : MonoBehaviour
         Stream_Az.Push(new Datapoint(current_time, RawValueFloats[15], "Az", "G"));
 
         //-------------META----------------------------------       //Index[16-17] are metadata
-        Stream_INDEX.Push(new Datapoint(current_time, RawValueFloats[17]));
+        //Stream_INDEX.Push(new Datapoint(current_time, RawValueFloats[17]));           //Not used
     }
 
     private void ResetStreams()
@@ -105,9 +103,6 @@ public class Processor : MonoBehaviour
         Stream_Ax.Clear();
         Stream_Ay.Clear();
         Stream_Az.Clear();
-
-        Stream_INDEX.Clear();
     }
 
-    
 }

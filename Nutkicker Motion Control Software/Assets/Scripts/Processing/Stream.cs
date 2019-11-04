@@ -127,6 +127,12 @@ public class Stream : MonoBehaviour
         EMA_Signal = Youngest.Datavalue;
         Buffer.Clear();
     }
+
+    public void Zero()
+    {
+        EMA_Signal = 0;
+        Buffer.Clear();
+    }
 }   
 
 public class Datapoint

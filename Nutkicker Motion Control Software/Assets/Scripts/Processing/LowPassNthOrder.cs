@@ -83,7 +83,6 @@ public class LowPassModular
 {
     float OldValue{ get; set; }
     public float Output { get; set; }
-
     public void Update(float NewValue, float Alpha)
     {
         Output = NewValue * Alpha + OldValue * (1 - Alpha);

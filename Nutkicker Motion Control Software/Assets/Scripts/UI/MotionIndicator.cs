@@ -15,6 +15,7 @@ public class MotionIndicator : MonoBehaviour
     [SerializeField] private Color Color_Pause;
     [SerializeField] private Color Color_Park;
     [SerializeField] private Color Color_Transit;
+    [SerializeField] private Color Color_Crashed;
 
     [SerializeField] private StartStopLogic startstoplogic;
 
@@ -22,7 +23,7 @@ public class MotionIndicator : MonoBehaviour
     {
         image = GetComponent<Image>();
     }
-    void FixedUpdate()
+    void Update()
     {
         switch (startstoplogic.SwitchStatus)
         {
@@ -41,6 +42,10 @@ public class MotionIndicator : MonoBehaviour
             case StartStopStatus.Transit:
                 image.color = Color_Transit;
                 TMP_Text.text = "In Transit";
+                break;
+            case StartStopStatus.Crashed:
+                image.color = Color_Crashed;
+                TMP_Text.text = "Crash detected - Click to reset";
                 break;
             default:
                 break;

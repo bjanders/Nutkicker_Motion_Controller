@@ -8,7 +8,8 @@ public enum StartStopStatus
     Motion,
     Pause,
     Park,
-    Transit
+    Transit,
+    Crashed
 }
 
 [ExecuteInEditMode]
