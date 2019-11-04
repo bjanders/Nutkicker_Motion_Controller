@@ -1,5 +1,6 @@
 + Make crank arm systems selectable in the UI
 - Prepare crank arm data for serial port
 - Show Bytes being sent to the AMC AASD-15A
+- implement crash detection (SAFETY!!!)
 
 
