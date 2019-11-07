@@ -59,4 +59,8 @@ public class MotionIndicator : MonoBehaviour
     {
         Debug.Log("Motionindicator schaltet Licht auf rot");
     }
+    public void OnCrashReset()
+    {
+        Debug.Log("Motionindicator schaltet Licht auf Grau");
+    }
 }

@@ -10,6 +10,7 @@ public class Processor : MonoBehaviour
 {
     [SerializeField] private Server server;
     [SerializeField] private AirlockReader airlockreader;
+    [SerializeField] private bool active;
     [Header("Streams")]
     [SerializeField] private Stream Stream_IAS;
     [SerializeField] private Stream Stream_MACH;
@@ -32,6 +33,7 @@ public class Processor : MonoBehaviour
     [SerializeField] private Stream Stream_Az;
     [SerializeField] private string[] RawValueStrings = new string[18];
     [SerializeField] private float[] RawValueFloats = new float[18];
+    [SerializeField] private float[] DefaultValueFloats = new float[18];
     
     private void Start()
     {
@@ -39,24 +41,23 @@ public class Processor : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (Server.Status == ServerStatus.reading)
+        if (active)                  //If there is something to read...
         {
-            ChopParseAndPackage(airlockreader.RawDataString);
+            ChopParseAndPackage(airlockreader.RawDataString);       //read it!
         }
-        else
+        else                                                        //else: use the default values.
         {
             StringBuilder DefaultString = new StringBuilder();
 
-            for (int i = 0; i < RawValueFloats.Length; i++)
+            for (int i = 0; i < DefaultValueFloats.Length; i++)
             {
-                DefaultString.Append(RawValueFloats[i].ToString());
+                DefaultString.Append(DefaultValueFloats[i].ToString());
 
-                if (i < RawValueFloats.Length - 1)     //is this the last time?
+                if (i < DefaultValueFloats.Length - 1)     //is this the last time?
                 {
                     DefaultString.Append(",");
                 }
             }
-
             ChopParseAndPackage(DefaultString.ToString());
         }
     }
