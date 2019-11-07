@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using System;
 using TMPro;
@@ -18,10 +16,13 @@ public class MotionIndicator : MonoBehaviour
     [SerializeField] private Color Color_Crashed;
 
     [SerializeField] private StartStopLogic startstoplogic;
-
+   
     private void Start()
     {
         image = GetComponent<Image>();
+
+        //Subscribe to events
+
     }
     void Update()
     {
@@ -45,10 +46,17 @@ public class MotionIndicator : MonoBehaviour
                 break;
             case StartStopStatus.Crashed:
                 image.color = Color_Crashed;
-                TMP_Text.text = "Crash detected - Click to reset";
+                TMP_Text.text = "CRASH DETECTED - Click to reset";
                 break;
             default:
                 break;
         }
+    }
+    
+    
+    //Receiving Events
+    public void OnCrashDetected()
+    {
+        Debug.Log("Motionindicator schaltet Licht auf rot");
     }
 }

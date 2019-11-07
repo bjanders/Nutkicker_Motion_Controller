@@ -17,6 +17,7 @@ public class StartStopLogic : MonoBehaviour
 {
     [SerializeField] public Platform platform_Pause;
     [SerializeField] public Platform platform_Physical;
+    [Space]
     [SerializeField] public GameObject CoR;
     [SerializeField] public StartStopStatus SwitchStatus;
     [SerializeField] public float transitionTime = 5.0f;
@@ -35,6 +36,7 @@ public class StartStopLogic : MonoBehaviour
         SwitchStatus = StartStopStatus.Park;
     }
 
+    //Receive events:
     public void OnClick_Motion2Pause()
     {
         if (SwitchStatus == StartStopStatus.Motion)
@@ -62,6 +64,16 @@ public class StartStopLogic : MonoBehaviour
         {
             StartCoroutine(Pause2Motion(lerpPhysical));
         }
+    }
+    public void OnCrashDetected()
+    {
+        SwitchStatus = StartStopStatus.Crashed;     //that means that no buttons will react anymore! Will only regain functionality after reset
+    }
+    public void OnCrashReset()
+    {
+        Debug.Log("RESET performed");
+        SwitchStatus = StartStopStatus.Motion;      //Re-enable platform Motion..
+        OnClick_Motion2Pause();                     //...and go to the Pause-position
     }
 
     ///////////---COROUTINES---//////////////

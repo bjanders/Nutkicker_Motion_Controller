@@ -5,37 +5,32 @@ using UnityEngine;
 
 public enum SignalType
 {
+    Line,
     Square,
     Sine,
     PerlinNoise
 }
 
+[ExecuteInEditMode]
 public class SignalGenerator : MonoBehaviour
 {
     [SerializeField] SignalType mode;
     [Range(0.2f,10)]
-    [SerializeField] float Period = 10;
-    [SerializeField] float Amplitude = 1;
+    [SerializeField] float Period;
+    [SerializeField] float Amplitude;
     [SerializeField] float Offset;
     [SerializeField] float Delay;
     [SerializeField] float Value;
     [Space]
     [SerializeField] Stream Outstream;
 
-    private float determinant;
-    private bool valuePositive;
-
-    private void Start()
-    {
-        //Period = 10;
-        //Amplitude = 1;
-    }       
-
-
     private void FixedUpdate()
     {
         switch (mode)
         {
+            case SignalType.Line:
+                GenerateLine();
+                break;
             case SignalType.Square:
                 GenerateSquareWave();
                 break;
@@ -49,6 +44,12 @@ public class SignalGenerator : MonoBehaviour
         }
     }
 
+    private void GenerateLine()
+    {
+        Value = Offset;
+        Datapoint datapoint = new Datapoint(Time.fixedTime, Value, "Line Signal");
+        Outstream.Push(datapoint);
+    }
     private void GenerateSineWave()
     {
         Value = Mathf.Sin((2 * Mathf.PI * Time.time / Period));
@@ -59,11 +60,10 @@ public class SignalGenerator : MonoBehaviour
         Datapoint datapoint = new Datapoint(Time.time, Value, "Sine Wave");
         Outstream.Push(datapoint);
     }
-
     private void GenerateSquareWave()
     {
-        determinant = ((Time.time - Delay) % Period) - Period / 2;
-        valuePositive = (determinant < 0);
+        float determinant = ((Time.time - Delay) % Period) - Period / 2;
+        bool valuePositive = (determinant < 0);
 
         if (valuePositive)
         {

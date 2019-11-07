@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
@@ -7,6 +8,7 @@ using UnityEngine;
 
 public class Processor : MonoBehaviour
 {
+    [SerializeField] private Server server;
     [SerializeField] private AirlockReader airlockreader;
     [Header("Streams")]
     [SerializeField] private Stream Stream_IAS;
@@ -37,7 +39,26 @@ public class Processor : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        ChopParseAndPackage(airlockreader.RawDataString);
+        if (Server.Status == ServerStatus.reading)
+        {
+            ChopParseAndPackage(airlockreader.RawDataString);
+        }
+        else
+        {
+            StringBuilder DefaultString = new StringBuilder();
+
+            for (int i = 0; i < RawValueFloats.Length; i++)
+            {
+                DefaultString.Append(RawValueFloats[i].ToString());
+
+                if (i < RawValueFloats.Length - 1)     //is this the last time?
+                {
+                    DefaultString.Append(",");
+                }
+            }
+
+            ChopParseAndPackage(DefaultString.ToString());
+        }
     }
    
     void ChopParseAndPackage(string s)

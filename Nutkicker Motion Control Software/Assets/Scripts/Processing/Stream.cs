@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class Stream : MonoBehaviour
 {
     [SerializeField] public string Type;
@@ -127,7 +128,6 @@ public class Stream : MonoBehaviour
         EMA_Signal = Youngest.Datavalue;
         Buffer.Clear();
     }
-
     public void Zero()
     {
         EMA_Signal = 0;
