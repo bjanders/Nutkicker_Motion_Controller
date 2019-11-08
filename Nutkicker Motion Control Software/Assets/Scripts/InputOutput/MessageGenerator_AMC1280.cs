@@ -13,7 +13,7 @@ public class MessageGenerator_AMC1280 : MonoBehaviour
     [SerializeField] private Actuator Act6;
     [Header("Message")]
     [ShowOnly] [SerializeField] public byte[] Message;
-    [ShowOnly][SerializeField] private byte[] StartBlock;
+    [ShowOnly] [SerializeField] private byte[] StartBlock;
     [SerializeField] private byte[] A1;
     [SerializeField] private byte[] A2;
     [SerializeField] private byte[] A3;
