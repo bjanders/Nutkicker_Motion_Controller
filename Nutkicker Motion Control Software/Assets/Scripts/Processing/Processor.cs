@@ -8,9 +8,8 @@ using UnityEngine;
 
 public class Processor : MonoBehaviour
 {
-    [SerializeField] private Server server;
     [SerializeField] private AirlockReader airlockreader;
-    [SerializeField] private bool active;
+    [SerializeField] private bool OnDuty;
     [Header("Streams")]
     [SerializeField] private Stream Stream_IAS;
     [SerializeField] private Stream Stream_MACH;
@@ -41,7 +40,8 @@ public class Processor : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (active)                  //If there is something to read...
+        
+        if ((Server.Status == ServerStatus.reading) && (OnDuty == true))       //If there is something to read...
         {
             ChopParseAndPackage(airlockreader.RawDataString);       //read it!
         }
@@ -51,7 +51,7 @@ public class Processor : MonoBehaviour
 
             for (int i = 0; i < DefaultValueFloats.Length; i++)
             {
-                DefaultString.Append(DefaultValueFloats[i].ToString());
+                DefaultString.Append(DefaultValueFloats[i].ToString(GlobalVars.myNumberFormat()));
 
                 if (i < DefaultValueFloats.Length - 1)     //is this the last time?
                 {
