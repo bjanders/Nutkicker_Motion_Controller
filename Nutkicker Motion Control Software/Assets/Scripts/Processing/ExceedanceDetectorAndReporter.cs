@@ -42,7 +42,8 @@ public class ExceedanceDetectorAndReporter : MonoBehaviour
     void Update()
     {   //------------HIC SUNT DRACONES!!!!-------------
         CurrentValue = InStream.Youngest.Datavalue;
-        ExceedancePresent = CheckForExceedance();
+        UpdatePeakValue();                                          //for diagnoctics
+        CheckForExceedance();
 
         if (ExceedancePresent && !SignalLatched)                    //it is this your first time here?
         {
@@ -62,15 +63,14 @@ public class ExceedanceDetectorAndReporter : MonoBehaviour
             OutStream.Push(new Datapoint(Time.fixedTime, CurrentValue, InStream.Type));
         }
     }
-    private bool CheckForExceedance()
+    private void CheckForExceedance()
     {
         if (Mathf.Abs(CurrentValue) >= Threshold)      
         {
-            return true;                                //We have a crash!
+            ExceedancePresent = true;                                //We have a crash!
         }
-        return false;                                   //All is fine
+        ExceedancePresent = false;                                   //All is fine
     }
-    
 
     //Events to receive:
     public void OnThresholdChanged(float th)
@@ -84,5 +84,12 @@ public class ExceedanceDetectorAndReporter : MonoBehaviour
     public void LatchCurrentValue()
     {
         SignalLatched = true;
+    }
+    public void UpdatePeakValue()
+    {
+        if (Mathf.Abs(CurrentValue) > Mathf.Abs(PeakValue))
+        {
+            PeakValue = CurrentValue;
+        }
     }
 }
