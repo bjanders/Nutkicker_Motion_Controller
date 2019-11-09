@@ -5,8 +5,11 @@ Crank Arms:
 
 General:
 + Show Bytes being sent to the AMC AASD-15A
-0 implement crash detection (SAFETY!!!)
++ implement crash detection and recvery
 - Let user set crash detection thresholds via UI
-- Leu user set Park- and Standby positions via UI
+- Let user set Park- and Standby positions via UI
+- Show exceedances in RawDataView
+- Note Forward,Left,Right and aft on the 3D model
+
 
 
