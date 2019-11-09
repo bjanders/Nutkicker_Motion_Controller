@@ -36,7 +36,6 @@ public class MotionIndicator : MonoBehaviour
     public void OnCrashResetPushed()          //the button was clicked
     {
         StartCoroutine(LetRigSettle(3000));
-        
     }
     public void OnStartStopLogicChanged(StartStopStatus status)
     {
@@ -45,7 +44,7 @@ public class MotionIndicator : MonoBehaviour
         {
             eventtrigger.enabled = true;
             image.color = Color_Crashed;
-            TMP_Text.text = "UNABLE MOTION due Crash";
+            TMP_Text.text = "UNABLE MOTION - Crash still present";
             return;
         }
         //Normal Ops:
@@ -78,7 +77,7 @@ public class MotionIndicator : MonoBehaviour
     IEnumerator LetRigSettle(int ms)
     {
         image.color = Color_Transit;
-        TMP_Text.text = "WAIT - Cleaning Filters";
+        TMP_Text.text = "WAIT - Draining Filters";
 
         yield return new WaitForSeconds((float)ms / 1000);
 

@@ -1,6 +1,12 @@
+Crank Arms:
 + Make crank arm systems selectable in the UI
+- Let user set up crank limits to get utilisation data
 - Prepare crank arm data for serial port
-- Show Bytes being sent to the AMC AASD-15A
-- implement crash detection (SAFETY!!!)
+
+General:
++ Show Bytes being sent to the AMC AASD-15A
+0 implement crash detection (SAFETY!!!)
+- Let user set crash detection thresholds via UI
+- Leu user set Park- and Standby positions via UI
 
 

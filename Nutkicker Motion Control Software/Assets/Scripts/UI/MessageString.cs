@@ -17,21 +17,13 @@ public class MessageString : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        //Message_String.text = System.Text.Encoding.Default.GetString(messagegenerator.Message);
-        //Debug.Log(System.Text.Encoding.Default.GetString(messagegenerator.Message));
-        
         sb.Clear();             //Tabula rasa!!!
 
-        for (int i = 0; i < messagegenerator.Message.Length; i++)
+        byte[] message = messagegenerator.Message;
+
+        foreach (byte b in message)
         {
-            sb.Append("<" + messagegenerator.Message[i] + ">");
-            if (i >= messagegenerator.Message.Length -1)
-            {
-                break;
-            }
-            //sb.Append("-");
-
-
+            sb.Append("<" + b + ">");
         }
 
         Message_String.text = sb.ToString();

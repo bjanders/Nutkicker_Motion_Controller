@@ -21,8 +21,9 @@ public class ExceedanceDetectorAndReporter : MonoBehaviour
     [Space]
     [SerializeField] float CurrentValue;
     [SerializeField] public float Threshold;
-    [SerializeField] float ValueBeforeImpact;  
-    [SerializeField] float ValueOnImpact;  
+    [SerializeField] float ValueBeforeLatch;  
+    [SerializeField] float ValueTriggeringLatch;  
+    [SerializeField] float PeakValue;  
     [SerializeField] public bool ExceedancePresent = false;
     [SerializeField] public bool SignalLatched = false;
 
@@ -39,25 +40,25 @@ public class ExceedanceDetectorAndReporter : MonoBehaviour
         }
     }
     void Update()
-    {
+    {   //------------HIC SUNT DRACONES!!!!-------------
         CurrentValue = InStream.Youngest.Datavalue;
         ExceedancePresent = CheckForExceedance();
 
         if (ExceedancePresent && !SignalLatched)                    //it is this your first time here?
         {
-            exceedanceDetected.Invoke(CurrentValue);                //raise the event once!
-            ValueOnImpact = CurrentValue;                           //remember the peak value that caused the trigger
+            exceedanceDetected.Invoke(CurrentValue);                //raise the event once! --> Will be re-raised when unlatched while exceedance present!
+            ValueTriggeringLatch = CurrentValue;                            //remember the peak value that caused the trigger
 
             SignalLatched = true;                                   //this will keep the exceedance detector in a latched state, can only be unlatched by calling the "OnCrashReset()" function.
         }
-        
+
         if (SignalLatched)                                          //this can only be reached, if the exceedance is no longer present, but there WAS one in the past
         {
-            OutStream.Push(new Datapoint(Time.fixedTime, ValueBeforeImpact, InStream.Type));                //we still send the last "safe" value
+            OutStream.Push(new Datapoint(Time.fixedTime, ValueBeforeLatch, InStream.Type));                //we still send the last "safe" value
         }
         else                                                        //this is the most frequent case :-)
         {
-            ValueBeforeImpact = CurrentValue;                       //remember for next time,... just in case!
+            ValueBeforeLatch = CurrentValue;                        //remember the last good value
             OutStream.Push(new Datapoint(Time.fixedTime, CurrentValue, InStream.Type));
         }
     }
@@ -67,7 +68,7 @@ public class ExceedanceDetectorAndReporter : MonoBehaviour
         {
             return true;                                //We have a crash!
         }
-        return false;                                  //All is fine
+        return false;                                   //All is fine
     }
     
 
@@ -79,5 +80,9 @@ public class ExceedanceDetectorAndReporter : MonoBehaviour
     public void OnCrashReset()
     {
         SignalLatched = false;
+    }
+    public void LatchCurrentValue()
+    {
+        SignalLatched = true;
     }
 }
