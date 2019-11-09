@@ -10,13 +10,13 @@ public class QuitGame : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKey(KeyCode.Escape))
-        {
-            Application.Quit();
-        }
-        if (Input.GetKey(KeyCode.Space))
-        {
-            Application.Quit();
-        }
+        //if (Input.GetKey(KeyCode.Escape))
+        //{
+        //    Application.Quit();
+        //}
+        //if (Input.GetKey(KeyCode.Space))
+        //{
+        //    Application.Quit();
+        //}
     }
 }

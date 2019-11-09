@@ -45,10 +45,10 @@ public class ExceedanceDetectorAndReporter : MonoBehaviour
         UpdatePeakValue();                                          //for diagnoctics
         CheckForExceedance();
 
-        if (ExceedancePresent && !SignalLatched)                    //it is this your first time here?
+        if (ExceedancePresent && !SignalLatched)                    //is this your first time here?
         {
-            exceedanceDetected.Invoke(CurrentValue);                //raise the event once! --> Will be re-raised when unlatched while exceedance present!
-            ValueTriggeringLatch = CurrentValue;                            //remember the peak value that caused the trigger
+            exceedanceDetected.Invoke(CurrentValue);                //raise the event once(!) --> Will be re-raised when unlatched while exceedance present!
+            ValueTriggeringLatch = CurrentValue;                    //remember the value that triggered the latch
 
             SignalLatched = true;                                   //this will keep the exceedance detector in a latched state, can only be unlatched by calling the "OnCrashReset()" function.
         }
@@ -67,9 +67,12 @@ public class ExceedanceDetectorAndReporter : MonoBehaviour
     {
         if (Mathf.Abs(CurrentValue) >= Threshold)      
         {
-            ExceedancePresent = true;                                //We have a crash!
+            ExceedancePresent = true;                               //We have a crash!
         }
-        ExceedancePresent = false;                                   //All is fine
+        else
+        {
+            ExceedancePresent = false;                              //All is fine
+        }                                
     }
 
     //Events to receive:
