@@ -16933,7 +16933,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f6ef1b478588014a8266fbb35afd499, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Crashed: 0
+  Crashed: 1
   crashDetected:
     m_PersistentCalls:
       m_Calls:
@@ -22909,6 +22909,16 @@ PrefabInstance:
       propertyPath: startstoplogic
       value: 
       objectReference: {fileID: 805732251}
+    - target: {fileID: 6149032665175543091, guid: a8126c6d8b5e5484caf45aa963f51c45,
+        type: 3}
+      propertyPath: ExceedancePresent
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6149032665175543091, guid: a8126c6d8b5e5484caf45aa963f51c45,
+        type: 3}
+      propertyPath: SignalLatched
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8126c6d8b5e5484caf45aa963f51c45, type: 3}
 --- !u!1 &1039170530

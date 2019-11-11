@@ -5,14 +5,15 @@ Crank Arms:
 
 General:
 + Show Bytes being sent to the AMC AASD-15A
-+ implement crash detection and recvery
++ implement (internal and autonomous) crash detection and recvery
+- implement datastream for In-Sim Crash Detection
 - Let user set crash detection thresholds via UI
 - Let user set Park- and Standby positions via UI
-- Show exceedances in RawDataView
-- Note Forward,Left,Right and aft on the 3D model
++ Show exceedances in RawDataView
+- Note Forward,Left,Right and aft on the 3D model (rig)
 
 UI:
--Add "I'm using a Crank Arm Setup" to the saved data.
+-Add "I'm using a Crank Arm Setup" bool value to the saved data.
 
 
 
