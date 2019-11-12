@@ -24,7 +24,7 @@ public class Server : MonoBehaviour
     [SerializeField] private string IP;
     [SerializeField] private int Port = 31090;
 
-    public static ServerStatus Status = ServerStatus.offline;
+    [SerializeField] public static ServerStatus Status = ServerStatus.offline;
     
     private void FixedUpdate()
     {

@@ -2,8 +2,9 @@
  * This Class is responsible for detecting a threshold exceedance in a datastream. Whenever an exceedance is present, it will...
  * 
  * 1. Block the downstream propagation of the exceedance value
- * 2. Send the last value that was present before the exceedance ocurred downstream instead
- * 3. Raise an "exceedance event" to alert the crash detector 
+ * 2. Send the last good value (that was present before the exceedance ocurred) downstream instead
+ * 3. Raise an "exceedance event" to alert the crash detector ONCE!
+ * 4. 
  */
 
 using System;
@@ -32,13 +33,9 @@ public class ExceedanceDetectorAndReporter : MonoBehaviour
     [SerializeField] float PeakValue;  
     [SerializeField] Image RedDotMarker;  
     [SerializeField] public bool ExceedancePresent = false;
-    [SerializeField] public bool latched = false;
+    [SerializeField] public bool SignalLatched = false;
 
-<<<<<<< HEAD
-    [SerializeField] public MyEvents.ExceedanceDetected exceedanceDetected;
-=======
     
->>>>>>> parent of 1edfc19... revert
 
     private void Start()
     {
@@ -53,7 +50,6 @@ public class ExceedanceDetectorAndReporter : MonoBehaviour
     void Update()
     {   //------------HIC SUNT DRACONES!!!!-------------
         CurrentValue = InStream.Youngest.Datavalue;
-<<<<<<< HEAD
         UpdatePeakValue();                                          //for diagnoctics
         CheckForExceedance();
 
@@ -69,46 +65,13 @@ public class ExceedanceDetectorAndReporter : MonoBehaviour
         if (SignalLatched)                                          //this can only be reached, if the exceedance is no longer present, but there WAS one in the past
         {
             OutStream.Push(new Datapoint(Time.fixedTime, ValueBeforeLatch, InStream.Type));                //we still send the last "safe" value
-=======
-
-        if (CheckForExceedance())
-        {
-            ExceedancePresent = true;
-            latched = true;                                 //this will keep the exceedance detector in a latched state, can only be unlatched by calling the "OnCrashReset()" function.
-
-            exceedanceDetected.Invoke(CurrentValue);        //raise the event
-
-            OutStream.Push(new Datapoint(Time.fixedTime, ValueBeforeImpact, InStream.Type));
-            ValueOnImpact = CurrentValue;
-            return;
         }
-        if (latched)                                        //this can only be reached, if the exceedance is no longer present
-        {
-            ExceedancePresent = false;
-            OutStream.Push(new Datapoint(Time.fixedTime, ValueBeforeImpact, InStream.Type));        //we still send the last "safe" value
-            return;
->>>>>>> parent of 2d1cf1b... Crash protection implemented (still messy)
-        }
-<<<<<<< HEAD
-        else                                                //this is the most frequent case :-)
-=======
         else                                                        //Normal ops here
->>>>>>> parent of 1edfc19... revert
         {
-<<<<<<< HEAD
             ValueBeforeLatch = CurrentValue;                        //remember the last good value
-<<<<<<< HEAD
-=======
-            ExceedancePresent = false;
-            ValueBeforeImpact = CurrentValue;                   //remember, just in case
->>>>>>> parent of 2d1cf1b... Crash protection implemented (still messy)
-=======
             
->>>>>>> parent of 1edfc19... revert
             OutStream.Push(new Datapoint(Time.fixedTime, CurrentValue, InStream.Type));
         }
-
-        
     }
     private void CheckForExceedance()
     {
@@ -121,20 +84,14 @@ public class ExceedanceDetectorAndReporter : MonoBehaviour
             ExceedancePresent = false;                              //All is fine
         }                                
     }
-<<<<<<< HEAD
 
     //Events to receive:
-=======
-    
-    //Events to receive:
->>>>>>> parent of 2d1cf1b... Crash protection implemented (still messy)
     public void OnThresholdChanged(float th)
     {
         Threshold = th;
     }
     public void Unlatch()                                           //this WILL unlatch the Exceedance detector! Might immediately re-trigger!!!
     {
-<<<<<<< HEAD
         SignalLatched = false;
     }
     public void LatchCurrentValue()
@@ -148,18 +105,5 @@ public class ExceedanceDetectorAndReporter : MonoBehaviour
             PeakValue = CurrentValue;
         }
     }
-<<<<<<< HEAD
-=======
-        latched = false;                //called by the Start/Stop logic. IT must ensure if this is save!s
-    }
 
-
-
-
-
-
->>>>>>> parent of 2d1cf1b... Crash protection implemented (still messy)
-=======
-
->>>>>>> parent of 1edfc19... revert
 }
