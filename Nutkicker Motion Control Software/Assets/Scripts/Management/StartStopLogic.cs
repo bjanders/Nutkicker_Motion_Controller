@@ -2,14 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public enum StartStopStatus
 {
     Motion,
     Pause,
     Park,
-    Transit
+    Transit,
+    Crashed
 }
 
 [ExecuteInEditMode]
@@ -21,10 +21,6 @@ public class StartStopLogic : MonoBehaviour
     [SerializeField] public GameObject CoR;
     [SerializeField] public StartStopStatus SwitchStatus;
     [SerializeField] public float transitionTime = 5.0f;
-    [SerializeField] public CrashDetector crashDetector;
-
-    [SerializeField] public MyEvents.StartStopChangedEvent StartStopChanged;
-    [SerializeField] public MyEvents.StartStopCrashRecoveredEvent StartStopCrashRecovered;
 
     private Lerp2Target lerpPause;
     private Lerp2Target lerpPhysical;
@@ -39,27 +35,8 @@ public class StartStopLogic : MonoBehaviour
 
         SwitchStatus = StartStopStatus.Park;
     }
-  
+
     //Receive events:
-    public void OnClick_Park2Pause()
-    {
-        if (SwitchStatus == StartStopStatus.Park)
-        {
-            StartCoroutine(Park2Pause(lerpPause));
-        }
-    }
-    public void OnClick_Pause2Motion()
-    {
-        if (SwitchStatus == StartStopStatus.Pause)
-        {
-            if (crashDetector.Crashed)
-            {
-                Debug.LogError("Crash still present. Clear before starting motion");
-                return;
-            }
-            StartCoroutine(Pause2Motion(lerpPhysical));
-        }
-    }
     public void OnClick_Motion2Pause()
     {
         if (SwitchStatus == StartStopStatus.Motion)
@@ -74,48 +51,47 @@ public class StartStopLogic : MonoBehaviour
             StartCoroutine(Pause2Park(lerpPause));
         }
     }
-    
+    public void OnClick_Park2Pause()
+    {
+        if (SwitchStatus == StartStopStatus.Park)
+        {
+            StartCoroutine(Park2Pause(lerpPause));
+        }
+    }
+    public void OnClick_Pause2Motion()
+    {
+        if (SwitchStatus == StartStopStatus.Pause)
+        {
+            StartCoroutine(Pause2Motion(lerpPhysical));
+        }
+    }
+    public void OnCrashDetected()
+    {
+        SwitchStatus = StartStopStatus.Crashed;     //that means that no buttons will react anymore! Will only regain functionality after reset
+    }
+    public void OnCrashReset()
+    {
+        Debug.Log("RESET performed");
+        SwitchStatus = StartStopStatus.Motion;      //Re-enable platform Motion..
+        OnClick_Motion2Pause();                     //...and go to the Pause-position
+    }
 
     ///////////---COROUTINES---//////////////
-    IEnumerator Park2Pause(Lerp2Target lerp)
-    {
-        SwitchStatus = StartStopStatus.Transit;
-        StartStopChanged.Invoke(SwitchStatus);
-
-        while (lerp.Percentage < 1)
-        {
-            lerp.Percentage += (1.0f / transitionTime) * Time.deltaTime;
-
-            yield return null;
-        }
-        lerp.Percentage = 1;
-
-        SwitchStatus = StartStopStatus.Pause;
-        StartStopChanged.Invoke(SwitchStatus);
-    }
-    IEnumerator Pause2Motion(Lerp2Target lerp)
-    {
-        SwitchStatus = StartStopStatus.Transit;
-        StartStopChanged.Invoke(SwitchStatus);
-
-        while (lerp.Percentage < 1)
-        {
-            lerp.Percentage += (1.0f / transitionTime) * Time.deltaTime;
-
-            yield return null;
-        }
-        lerp.Percentage = 1;
-
-        CoR.SetActive(true);
-
-        SwitchStatus = StartStopStatus.Motion;
-        StartStopChanged.Invoke(SwitchStatus);
-    }
     IEnumerator Motion2Pause(Lerp2Target lerp)
     {
-        SwitchStatus = StartStopStatus.Transit;
-        StartStopChanged.Invoke(SwitchStatus);
+        while (lerp.Percentage > 0)
+        {
+            lerp.Percentage -= (1.0f / transitionTime) * Time.deltaTime;
 
+            yield return null;
+        }
+        lerp.Percentage = 0;
+
+        SwitchStatus = StartStopStatus.Pause;
+    }
+    IEnumerator Pause2Park(Lerp2Target lerp)
+    {
+        SwitchStatus = StartStopStatus.Transit;
         CoR.SetActive(false);
 
         while (lerp.Percentage > 0)
@@ -125,25 +101,32 @@ public class StartStopLogic : MonoBehaviour
             yield return null;
         }
         lerp.Percentage = 0;
-
-        SwitchStatus = StartStopStatus.Pause;
-        StartStopChanged.Invoke(SwitchStatus);
+        SwitchStatus = StartStopStatus.Park;
     }
-    IEnumerator Pause2Park(Lerp2Target lerp)
+    IEnumerator Park2Pause(Lerp2Target lerp)
     {
         SwitchStatus = StartStopStatus.Transit;
-        StartStopChanged.Invoke(SwitchStatus);
 
-        while (lerp.Percentage > 0)
+        while (lerp.Percentage < 1)
         {
-            lerp.Percentage -= (1.0f / transitionTime) * Time.deltaTime;
+            lerp.Percentage += (1.0f / transitionTime) * Time.deltaTime;
 
             yield return null;
         }
-        lerp.Percentage = 0;
-
-        SwitchStatus = StartStopStatus.Park;
-        StartStopChanged.Invoke(SwitchStatus);
+        lerp.Percentage = 1;
+        CoR.SetActive(true);
+        SwitchStatus = StartStopStatus.Pause;
     }
-    
+    IEnumerator Pause2Motion(Lerp2Target lerp)
+    {
+        SwitchStatus = StartStopStatus.Motion;
+
+        while (lerp.Percentage < 1)
+        {
+            lerp.Percentage += (1.0f / transitionTime) * Time.deltaTime;
+
+            yield return null;
+        }
+        lerp.Percentage = 1;
+    }
 }

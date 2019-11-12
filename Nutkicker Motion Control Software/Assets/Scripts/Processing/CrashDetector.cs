@@ -3,17 +3,12 @@ using UnityEngine;
 
 public class CrashDetector : MonoBehaviour
 {
-    [SerializeField] public bool Crashed;
-    [SerializeField] public MyEvents.CrashDetectedEvent crashDetected;
+    [SerializeField] public MyEvents.CrashDetected crashDetected;
 
     //events to receive:
     public void OnExceedanceDetected(float f)
     {
-        Crashed = true;
+        Debug.Log("Crash Detector received an exceedance of " + f.ToString());
         crashDetected.Invoke();
-    }
-    public void OnCrashReset()
-    {
-        Crashed = false;
     }
 }
