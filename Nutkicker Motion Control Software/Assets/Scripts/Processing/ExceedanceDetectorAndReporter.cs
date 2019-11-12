@@ -11,41 +11,33 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.Events;
 
 [ExecuteInEditMode]
 public class ExceedanceDetectorAndReporter : MonoBehaviour
 {
-    //Define events:
-    [Serializable] public class ExceedanceDetectedEvent : UnityEvent<float> { }
-    //instatiate events:
-    [SerializeField] public ExceedanceDetectedEvent exceedanceDetected;
-
     [SerializeField] Stream InStream;       //usuallly the parent
     [SerializeField] Stream OutStream;      //this is the Stream object attacherd to the gameobject 
     [Space]
-    [SerializeField] StartStopLogic startstoplogic;
     [SerializeField] float CurrentValue;
     [SerializeField] public float Threshold;
     [SerializeField] float ValueBeforeLatch;  
     [SerializeField] float ValueTriggeringLatch;  
     [SerializeField] float PeakValue;  
-    [SerializeField] Image RedDotMarker;  
     [SerializeField] public bool ExceedancePresent = false;
     [SerializeField] public bool SignalLatched = false;
 
-    
+    [SerializeField] public MyEvents.ExceedanceDetectedEvent exceedanceDetected;
 
     private void Start()
     {
         if (transform.parent.gameObject.GetComponent<Stream>() != null)
         {
             InStream = transform.parent.gameObject.GetComponent<Stream>();
+            OutStream = GetComponent<Stream>();
+
             this.name = InStream.name + "_PROT";
         }
-        
-        OutStream = GetComponent<Stream>();
     }
     void Update()
     {   //------------HIC SUNT DRACONES!!!!-------------
@@ -53,12 +45,11 @@ public class ExceedanceDetectorAndReporter : MonoBehaviour
         UpdatePeakValue();                                          //for diagnoctics
         CheckForExceedance();
 
-        RedDotMarker.enabled = ExceedancePresent;
-
         if (ExceedancePresent && !SignalLatched)                    //is this your first time here?
         {
             exceedanceDetected.Invoke(CurrentValue);                //raise the event once(!) --> Will be re-raised when unlatched while exceedance present!
             ValueTriggeringLatch = CurrentValue;                    //remember the value that triggered the latch
+
             SignalLatched = true;                                   //this will keep the exceedance detector in a latched state, can only be unlatched by calling the "OnCrashReset()" function.
         }
 
@@ -66,10 +57,9 @@ public class ExceedanceDetectorAndReporter : MonoBehaviour
         {
             OutStream.Push(new Datapoint(Time.fixedTime, ValueBeforeLatch, InStream.Type));                //we still send the last "safe" value
         }
-        else                                                        //Normal ops here
+        else                                                        //this is the most frequent case :-)
         {
             ValueBeforeLatch = CurrentValue;                        //remember the last good value
-            
             OutStream.Push(new Datapoint(Time.fixedTime, CurrentValue, InStream.Type));
         }
     }
@@ -90,7 +80,7 @@ public class ExceedanceDetectorAndReporter : MonoBehaviour
     {
         Threshold = th;
     }
-    public void Unlatch()                                           //this WILL unlatch the Exceedance detector! Might immediately re-trigger!!!
+    public void OnCrashReset()
     {
         SignalLatched = false;
     }
@@ -105,5 +95,4 @@ public class ExceedanceDetectorAndReporter : MonoBehaviour
             PeakValue = CurrentValue;
         }
     }
-
 }
