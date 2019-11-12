@@ -18035,6 +18035,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 1edfc19... revert
   StartStopChanged:
     m_PersistentCalls:
       m_Calls:
@@ -18055,6 +18058,7 @@ MonoBehaviour:
   Logicstatus: 2
   transitionTime: 5
   crashDetector: {fileID: 740888795}
+<<<<<<< HEAD
 =======
   platform_Pause: {fileID: 1706560277}
   platform_Physical: {fileID: 643462896}
@@ -18062,6 +18066,8 @@ MonoBehaviour:
   SwitchStatus: 2
   transitionTime: 5
 >>>>>>> parent of 2d1cf1b... Crash protection implemented (still messy)
+=======
+>>>>>>> parent of 1edfc19... revert
 --- !u!1001 &810346360
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22943,8 +22949,11 @@ PrefabInstance:
       propertyPath: SignalLatched
       value: 1
       objectReference: {fileID: 0}
+<<<<<<< HEAD
 =======
 >>>>>>> parent of 2d1cf1b... Crash protection implemented (still messy)
+=======
+>>>>>>> parent of 1edfc19... revert
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8126c6d8b5e5484caf45aa963f51c45, type: 3}
 --- !u!1 &1039170530
@@ -24998,8 +25007,11 @@ PrefabInstance:
       propertyPath: startstoplogic
       value: 
       objectReference: {fileID: 805732251}
+<<<<<<< HEAD
 =======
 >>>>>>> parent of 2d1cf1b... Crash protection implemented (still messy)
+=======
+>>>>>>> parent of 1edfc19... revert
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8126c6d8b5e5484caf45aa963f51c45, type: 3}
 --- !u!224 &1188403374 stripped

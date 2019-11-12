@@ -12,11 +12,8 @@ General:
 + Show exceedances in RawDataView
 - Note Forward,Left,Right and aft on the 3D model (rig)
 
-<<<<<<< HEAD
 UI:
 -Add "I'm using a Crank Arm Setup" bool value to the saved data.
 
-=======
->>>>>>> parent of 1599d72... Crash recovery implemented
 
 
