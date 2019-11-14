@@ -8,22 +8,27 @@ using TMPro;
 [ExecuteInEditMode]
 public class ComPortFinder : MonoBehaviour
 {
-    [SerializeField] public string[] PortNames;
+    [SerializeField] private List<string>Ports;
+    [SerializeField] private TMP_Dropdown dropdown;         //to FILL the dropdown menu with all avalilable COM ports.
+    [SerializeField] private SerialConnector connector;     //to know when the connection is open. When it IS open, only the active COM port should be displayed in the Dropdown.
 
-    [SerializeField] private List<string>PortOptions;
-    [SerializeField] private TMP_Dropdown dropdown;     //to FILL the dropdown menu with all avalilable COM ports.
-    
-    void Start()
+    private void Start()
     {
-        InvokeRepeating("UpdateComPorts", 0.0f, 4.0f);
+        UpdateComPorts();                                               //so that we can start with a populated dropdown.
     }
-
     void UpdateComPorts ()
     {
-        PortNames = SerialPort.GetPortNames();
-        PortOptions = new List<string>(PortNames);
-
+        Ports = new List<string>(SerialPort.GetPortNames());
+        UpdateDropdown();
+    }
+    void UpdateDropdown()
+    {
         dropdown.ClearOptions();
-        dropdown.AddOptions(PortOptions);
+        dropdown.AddOptions(Ports);
+    }
+
+    public void OnOpenDropdown()
+    {
+        UpdateComPorts();
     }
 }

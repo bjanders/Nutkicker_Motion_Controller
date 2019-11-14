@@ -13,24 +13,25 @@ public class SerialConnector : MonoBehaviour
     [SerializeField] public int WriteTimeout;
     [SerializeField] public bool IsOpen;
     [SerializeField] public TMP_Dropdown dropdown;
+    [SerializeField] public TextMeshProUGUI label;
     [SerializeField] private MessageGenerator_AMC1280 messagegenerator;
 
-    public SerialPort serialport = new SerialPort();
+    [SerializeField] public SerialPort serialport;
 
     /////////////////////////////////////////////////////////////////////////
     private void Start()
     {
         messagegenerator = GetComponent<MessageGenerator_AMC1280>();
-
+        serialport = new SerialPort();
+        
         TestMessage = "<Test message>";
         COM_Port = "Not assigned";
         BaudRate = 250000;
         WriteTimeout = 2000;
         IsOpen = false;
     }
-    private void FixedUpdate()
+    private void Update()
     {
-        IsOpen = serialport.IsOpen;
         if (IsOpen)
         {
             Write(messagegenerator.Message);
@@ -67,10 +68,16 @@ public class SerialConnector : MonoBehaviour
             {
                 COM_Port = dropdown.options[dropdown.value].text;
 
-                serialport = new SerialPort(COM_Port, BaudRate);
+                serialport.PortName = COM_Port;
+                serialport.BaudRate = BaudRate;
                 serialport.WriteTimeout = WriteTimeout;
 
                 serialport.Open();
+                IsOpen = serialport.IsOpen;
+
+                dropdown.gameObject.SetActive(false);
+                label.enabled = true;
+                label.text = COM_Port;
 
                 Debug.Log("Serialport opened: " + COM_Port);
             }
@@ -88,7 +95,12 @@ public class SerialConnector : MonoBehaviour
             if (serialport.IsOpen)
             {
                 serialport.Close();
+                IsOpen = serialport.IsOpen;
+
                 COM_Port = "Not assigned";
+                dropdown.gameObject.SetActive(true);
+                label.enabled = false;
+
 
                 Debug.Log("Serialport closed.");
             }

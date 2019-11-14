@@ -8,15 +8,4 @@ public class QuitGame : MonoBehaviour
     {
         Application.targetFrameRate = 100;
     }
-    void Update()
-    {
-        //if (Input.GetKey(KeyCode.Escape))
-        //{
-        //    Application.Quit();
-        //}
-        //if (Input.GetKey(KeyCode.Space))
-        //{
-        //    Application.Quit();
-        //}
-    }
 }
