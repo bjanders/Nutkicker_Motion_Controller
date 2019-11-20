@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.IO;
 using TMPro;
 using SFB;      //Standalone File Browser from GitHub (https://github.com/gkngkc/UnityStandaloneFileBrowser)
@@ -13,6 +14,8 @@ public class LoadSaveRigConfig : MonoBehaviour
     [SerializeField] ServoManager servomanager;
     [Header("Input Panel")]
     [SerializeField] PanelRigConfig PanelRigConfig;
+    [SerializeField] Toggle toggle_IsCrankArmSystem;
+    [SerializeField] Toggle toggle_IsFlippedCranks;
     [Header("File")]
     [SerializeField] string FileName = "Rig_Settings";
     [ShowOnly] [SerializeField] string FileExtension = "rig";
@@ -28,11 +31,11 @@ public class LoadSaveRigConfig : MonoBehaviour
         saveobject = new SaveObject();
 
         string LoadFileName = "LastQuit." + FileExtension;
-        string FilePath = Path.Combine(Application.persistentDataPath, LoadFileName);
+        string Path = System.IO.Path.Combine(Application.persistentDataPath, LoadFileName);
         
-        if (File.Exists(FilePath))
+        if (File.Exists(Path))
         {
-            saveobject = ReadObjectFromFile(FilePath);
+            saveobject = ReadObjectFromFile(Path);
             ReadDataFromObject();
             //Debug.Log("Loading Rig Config:" + LoadFileName);
         }
@@ -93,13 +96,13 @@ public class LoadSaveRigConfig : MonoBehaviour
     }
 
     ////////////  LOAD DATA  ////////////
-    private SaveObject ReadObjectFromFile(string FilePath)
+    private SaveObject ReadObjectFromFile(string Path)
     {
         string json;
 
-        if (File.Exists(FilePath))
+        if (File.Exists(Path))
         {
-            using (StreamReader reader = new StreamReader(File.OpenRead(FilePath)))
+            using (StreamReader reader = new StreamReader(File.OpenRead(Path)))
             {
                 json = reader.ReadToEnd();
             }
@@ -124,6 +127,9 @@ public class LoadSaveRigConfig : MonoBehaviour
         actuators.MinLength = saveobject.actuator_settings.MinLength;
         actuators.MaxLength = saveobject.actuator_settings.MaxLength;
 
+        toggle_IsCrankArmSystem.isOn = saveobject.isCrankArmSystem;
+        toggle_IsFlippedCranks.isOn = saveobject.crankarm_settings.IsFlipped;
+
         servomanager.azimuth = saveobject.crankarm_settings.Azimuth;
         servomanager.crank_Length = saveobject.crankarm_settings.CrankLength;
         servomanager.rod_Length = saveobject.crankarm_settings.RodLength;
@@ -142,6 +148,8 @@ public class LoadSaveRigConfig : MonoBehaviour
         saveobject.actuator_settings.Diameter = actuators.Diameter;
         saveobject.actuator_settings.MinLength = actuators.MinLength;
         saveobject.actuator_settings.MaxLength = actuators.MaxLength;
+
+        saveobject.isCrankArmSystem = toggle_IsCrankArmSystem.isOn;
 
         saveobject.crankarm_settings.Azimuth = servomanager.azimuth;
         saveobject.crankarm_settings.CrankLength = servomanager.crank_Length;

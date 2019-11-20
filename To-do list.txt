@@ -13,7 +13,8 @@ General:
 - Note Forward,Left,Right and aft on the 3D model (rig)
 
 UI:
--Add "I'm using a Crank Arm Setup" bool value to the saved data.
++ Add "I'm using a Crank Arm Setup" bool value to the saved data.
+- Add Crash detection thresholds to saved data
 
 
 
