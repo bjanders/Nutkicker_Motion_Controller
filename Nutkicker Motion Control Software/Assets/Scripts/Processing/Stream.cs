@@ -13,7 +13,7 @@ public class Stream : MonoBehaviour
     [SerializeField] private string Unit;
     [SerializeField] public float EMA_alpha = 1;
 
-    private float EMA_Signal = 0;
+    private float EMA_Signal;
     private int MemTime;
 
     private void FixedUpdate()
