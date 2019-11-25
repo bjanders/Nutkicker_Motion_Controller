@@ -333,7 +333,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "In this window you can set the values that (when exceeded) will trigger
     the rig to go  into the crashed state to prevent damage to the hardware.\n\nYou
-    can set thresholds for rotations (in rad/sec) and accelerations (in G) ALONG the
+    can set thresholds for rotations (in rad/sec) and accelerations (in G) along the
     three vehicle axis. \n\nIt is up to you to find values that will trigger the crashed
     state reliably without interfering with normal operation of the vehicle. \n\nTip:
     Start with conservative (small) values and work your way up."
@@ -2353,6 +2353,186 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0983c9a99b0bd15468209e0fcd56b811, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &108413851
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2094002092}
+    m_Modifications:
+    - target: {fileID: 5519145663145742387, guid: 51afd6199fe5c44168c6a2aae517135e,
+        type: 3}
+      propertyPath: m_Name
+      value: Help_QM
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519145663145742388, guid: 51afd6199fe5c44168c6a2aae517135e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519145663145742388, guid: 51afd6199fe5c44168c6a2aae517135e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519145663145742388, guid: 51afd6199fe5c44168c6a2aae517135e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519145663145742388, guid: 51afd6199fe5c44168c6a2aae517135e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519145663145742388, guid: 51afd6199fe5c44168c6a2aae517135e,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519145663145742388, guid: 51afd6199fe5c44168c6a2aae517135e,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519145663145742388, guid: 51afd6199fe5c44168c6a2aae517135e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519145663145742388, guid: 51afd6199fe5c44168c6a2aae517135e,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519145663145742388, guid: 51afd6199fe5c44168c6a2aae517135e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519145663145742388, guid: 51afd6199fe5c44168c6a2aae517135e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519145663145742388, guid: 51afd6199fe5c44168c6a2aae517135e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519145663145742388, guid: 51afd6199fe5c44168c6a2aae517135e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519145663145742388, guid: 51afd6199fe5c44168c6a2aae517135e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519145663145742388, guid: 51afd6199fe5c44168c6a2aae517135e,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519145663145742388, guid: 51afd6199fe5c44168c6a2aae517135e,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519145663145742388, guid: 51afd6199fe5c44168c6a2aae517135e,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519145663145742388, guid: 51afd6199fe5c44168c6a2aae517135e,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519145663145742388, guid: 51afd6199fe5c44168c6a2aae517135e,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519145663145742388, guid: 51afd6199fe5c44168c6a2aae517135e,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519145663145742388, guid: 51afd6199fe5c44168c6a2aae517135e,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519145663145742388, guid: 51afd6199fe5c44168c6a2aae517135e,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519145663795746683, guid: 51afd6199fe5c44168c6a2aae517135e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519145663795746684, guid: 51afd6199fe5c44168c6a2aae517135e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 218.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519145663795746684, guid: 51afd6199fe5c44168c6a2aae517135e,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 426.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519145663821033602, guid: 51afd6199fe5c44168c6a2aae517135e,
+        type: 3}
+      propertyPath: m_text
+      value: 'In this window you set up the server to receive data from the simulator.
+
+
+        If this software runs on the same machine your simulator is running on, keep
+        the checkbox checked.
+
+
+        If you have the sim running on another machine in the network, uncheck the
+        checkbox.
+
+
+        Note the IP adress! The sim must send it''s data to THAT adress.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519145663821033602, guid: 51afd6199fe5c44168c6a2aae517135e,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 313
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519145663821033602, guid: 51afd6199fe5c44168c6a2aae517135e,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 61
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519145663821033602, guid: 51afd6199fe5c44168c6a2aae517135e,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519145663821033602, guid: 51afd6199fe5c44168c6a2aae517135e,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519145663821033602, guid: 51afd6199fe5c44168c6a2aae517135e,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519145663821033602, guid: 51afd6199fe5c44168c6a2aae517135e,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: -1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 51afd6199fe5c44168c6a2aae517135e, type: 3}
 --- !u!1 &110135977
 GameObject:
   m_ObjectHideFlags: 0
@@ -4483,7 +4663,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 0, y: 1.08e-43, z: 6.332e-42, w: 6e-44}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -6159,7 +6339,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &260218794
 RectTransform:
   m_ObjectHideFlags: 0
@@ -40157,12 +40337,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'This window shows you the raw data coming in from the sim before they get
-    filtered by the Motion Cueing Algorithm.
+  m_text: 'This window shows the raw data coming in from the sim before they get filtered
+    by the Motion Cueing Algorithm.
 
 
-    If you see a red dot behind the value, it means that the value exceeds the detection
-    threshold of the crash detection logic.'
+    If you see a red dot behind the value, it means that the value exceeds the threshold
+    of the crash detection logic.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
