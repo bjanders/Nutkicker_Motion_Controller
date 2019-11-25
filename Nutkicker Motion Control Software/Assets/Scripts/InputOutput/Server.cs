@@ -53,6 +53,8 @@ public class Server : MonoBehaviour
         }
         else
         {
+            //string Path = System.IO.Path.Combine(Application.persistentDataPath, "FileName.pdf");
+            //Application.OpenURL(Path);
             Debug.Log("Server is not running");
         }
 
