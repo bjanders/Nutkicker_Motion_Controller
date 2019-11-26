@@ -10,12 +10,15 @@ public class LoadSaveRigConfig : MonoBehaviour
     [Header("Hardware")]
     [SerializeField] Platform Base;
     [SerializeField] Platform Final;
+    [SerializeField] Platform ParkPosition;
+    [SerializeField] Platform NeutralPosition;
     [SerializeField] Actuators actuators;
     [SerializeField] ServoManager servomanager;
     [Header("Input Panel")]
     [SerializeField] PanelRigConfig PanelRigConfig;
     [SerializeField] Toggle toggle_IsCrankArmSystem;
     [SerializeField] Toggle toggle_IsFlippedCranks;
+
     [Header("File")]
     [SerializeField] string FileName = "Rig_Settings";
     [ShowOnly] [SerializeField] string FileExtension = "rig";
@@ -127,13 +130,17 @@ public class LoadSaveRigConfig : MonoBehaviour
         actuators.MinLength = saveobject.actuator_settings.MinLength;
         actuators.MaxLength = saveobject.actuator_settings.MaxLength;
 
+        //Positions:
+        ParkPosition.transform.localPosition = saveobject.park_position;
+        NeutralPosition.transform.localPosition = saveobject.neutral_position;
+
+        //Cranks:
         toggle_IsCrankArmSystem.isOn = saveobject.isCrankArmSystem;
         toggle_IsFlippedCranks.isOn = saveobject.crankarm_settings.IsFlipped;
 
         servomanager.azimuth = saveobject.crankarm_settings.Azimuth;
         servomanager.crank_Length = saveobject.crankarm_settings.CrankLength;
         servomanager.rod_Length = saveobject.crankarm_settings.RodLength;
-        servomanager.FlipCranks = saveobject.crankarm_settings.IsFlipped;
     }
 
     ////////////  Save DATA  ////////////
@@ -149,7 +156,13 @@ public class LoadSaveRigConfig : MonoBehaviour
         saveobject.actuator_settings.MinLength = actuators.MinLength;
         saveobject.actuator_settings.MaxLength = actuators.MaxLength;
 
+        //Positions:
+        saveobject.park_position = ParkPosition.transform.localPosition;
+        saveobject.neutral_position = NeutralPosition.transform.localPosition;
+
+        //Cranks:
         saveobject.isCrankArmSystem = toggle_IsCrankArmSystem.isOn;
+        saveobject.crankarm_settings.IsFlipped = toggle_IsFlippedCranks.isOn;
 
         saveobject.crankarm_settings.Azimuth = servomanager.azimuth;
         saveobject.crankarm_settings.CrankLength = servomanager.crank_Length;
@@ -173,6 +186,9 @@ public class LoadSaveRigConfig : MonoBehaviour
         public PlatformSettings base_settings = new PlatformSettings();
         public PlatformSettings final_settings = new PlatformSettings();
         public ActuatorSettings actuator_settings = new ActuatorSettings();
+
+        public Vector3 park_position = new Vector3();
+        public Vector3 neutral_position = new Vector3();
 
         public bool isCrankArmSystem = false;
         public CrankArmSettings crankarm_settings = new CrankArmSettings();

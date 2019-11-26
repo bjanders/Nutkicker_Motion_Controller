@@ -29,22 +29,22 @@ public class Transformer : MonoBehaviour
     [SerializeField] public float Gain_Roll     = 1.0f;
 
     [Header("Offsets")]
-    [SerializeField] public float Offset_Sway   = 0.0f;
-    [SerializeField] public float Offset_Heave  = 0.0f;
-    [SerializeField] public float Offset_Surge  = 0.0f;
+    [SerializeField] public float Offset_Sway;
+    [SerializeField] public float Offset_Heave;
+    [SerializeField] public float Offset_Surge;
     [Space]
-    [SerializeField] public float Offset_Yaw    = 0.0f;
-    [SerializeField] public float Offset_Pitch  = 0.0f;
-    [SerializeField] public float Offset_Roll   = 0.0f;
+    [SerializeField] public float Offset_Yaw;
+    [SerializeField] public float Offset_Pitch;
+    [SerializeField] public float Offset_Roll;
 
     [Header("Output")]
-    [SerializeField] private float Sway = 0;
-    [SerializeField] private float Heave = 0;
-    [SerializeField] private float Surge = 0;
+    [SerializeField] private float Sway;
+    [SerializeField] private float Heave;
+    [SerializeField] private float Surge;
     [Space]
-    [SerializeField] private float Yaw = 0;
-    [SerializeField] private float Pitch = 0;
-    [SerializeField] private float Roll = 0;
+    [SerializeField] private float Yaw;
+    [SerializeField] private float Pitch;
+    [SerializeField] private float Roll;
     
     //////////////////////////////////////////////////////////
     private void Awake()

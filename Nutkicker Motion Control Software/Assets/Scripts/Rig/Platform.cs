@@ -83,5 +83,26 @@ public class Platform : MonoBehaviour
     {
         Radius = Convert.ToSingle(value, GlobalVars.myNumberFormat());
     }
-    
+    public void OnPosition_X_Changed(string value)
+    {
+        float temp = Convert.ToSingle(value,GlobalVars.myNumberFormat());
+        transform.localPosition = new Vector3(  temp,
+                                                transform.localPosition.y,
+                                                transform.localPosition.z   );
+    }
+    public void OnPosition_Y_Changed(string value)
+    {
+        float temp = Convert.ToSingle(value, GlobalVars.myNumberFormat());
+        transform.localPosition = new Vector3(  transform.localPosition.x,
+                                                temp,
+                                                transform.localPosition.z);
+    }
+    public void OnPosition_Z_Changed(string value)
+    {
+        float temp = Convert.ToSingle(value, GlobalVars.myNumberFormat());
+        transform.localPosition = new Vector3(  transform.localPosition.x,
+                                                transform.localPosition.y,
+                                                temp);
+    }
+
 }
