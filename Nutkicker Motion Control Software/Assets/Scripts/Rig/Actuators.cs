@@ -45,5 +45,9 @@ public class Actuators : MonoBehaviour
     {
         MaxLength = Convert.ToSingle(value, GlobalVars.myNumberFormat());
     }
+    public bool OnPollForAllInLimits()
+    {
+        return ((Act1.InLimits && Act2.InLimits) && (Act3.InLimits && Act4.InLimits)) && (Act5.InLimits && Act6.InLimits);
+    }
 }
     

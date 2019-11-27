@@ -87,9 +87,30 @@ public class Transformer : MonoBehaviour
     }
     //////////////////////////////////////////////////////////
     
+    public void On_OffsetSurgeChanged(string s)
+    {
+        Offset_Surge = Convert.ToSingle(s, GlobalVars.myNumberFormat());
+    }
     public void On_OffsetHeaveChanged(string s)
     {
         Offset_Heave = Convert.ToSingle(s, GlobalVars.myNumberFormat());
+    }
+    public void On_OffsetSwayChanged(string s)
+    {
+        Offset_Sway = Convert.ToSingle(s, GlobalVars.myNumberFormat());
+    }
+
+    public void On_OffsetRollChanged(string s)
+    {
+        Offset_Roll = Convert.ToSingle(s, GlobalVars.myNumberFormat());
+    }
+    public void On_OffsetYawChanged(string s)
+    {
+        Offset_Yaw = Convert.ToSingle(s, GlobalVars.myNumberFormat());
+    }
+    public void On_OffsetPitchChanged(string s)
+    {
+        Offset_Pitch = Convert.ToSingle(s, GlobalVars.myNumberFormat());
     }
 
     public void On_GainSwayChanged(string s)

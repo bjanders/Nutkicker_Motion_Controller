@@ -12,6 +12,7 @@ public class GlobalVars
         var format = new NumberFormatInfo();
         format.NegativeSign = "-";
         format.NumberDecimalSeparator = ".";
+        format.NumberDecimalDigits = 4;
 
         return format;
     }
