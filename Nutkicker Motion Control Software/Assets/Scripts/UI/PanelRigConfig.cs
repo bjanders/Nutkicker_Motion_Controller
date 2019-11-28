@@ -15,30 +15,32 @@ public class PanelRigConfig : MonoBehaviour
     [SerializeField] private Actuators actuators;
     [SerializeField] private ServoManager servomanager;
 
-    [Header("Hardware")]
-    [SerializeField] private TMP_InputField RadiusBase;
-    [SerializeField] private TMP_InputField AlphaBase;
+    [Header("Input Rig")]
+    [SerializeField] public TMP_InputField RadiusBase;
+    [SerializeField] public TMP_InputField AlphaBase;
     [Space]
-    [SerializeField] private TMP_InputField RadiusFinal;
-    [SerializeField] private TMP_InputField AlphaFinal;
+    [SerializeField] public TMP_InputField RadiusFinal;
+    [SerializeField] public TMP_InputField AlphaFinal;
+    [Space]
+    [SerializeField] public Toggle UsingCrankArmSystem;
 
     [Header("Input Actuators")]
-    [SerializeField] private TMP_InputField ActuatorMin;
-    [SerializeField] private TMP_InputField ActuatorMax;
+    [SerializeField] public TMP_InputField ActuatorMin;
+    [SerializeField] public TMP_InputField ActuatorMax;
 
     [Header("Input Positions")]
-    [SerializeField] private TMP_InputField Input_Park_X;
-    [SerializeField] private TMP_InputField Input_Park_Y;
-    [SerializeField] private TMP_InputField Input_Park_Z;
-    [SerializeField] private TMP_InputField Input_Neutral_X;
-    [SerializeField] private TMP_InputField Input_Neutral_Y;
-    [SerializeField] private TMP_InputField Input_Neutral_Z;
+    [SerializeField] public TMP_InputField Input_Park_X;
+    [SerializeField] public TMP_InputField Input_Park_Y;
+    [SerializeField] public TMP_InputField Input_Park_Z;
+    [SerializeField] public TMP_InputField Input_Neutral_X;
+    [SerializeField] public TMP_InputField Input_Neutral_Y;
+    [SerializeField] public TMP_InputField Input_Neutral_Z;
 
     [Header("Input Cranks")]
-    [SerializeField] private TMP_InputField Azimuth;
-    [SerializeField] private TMP_InputField Crank_length;
-    [SerializeField] private TMP_InputField Rod_length;
-    [SerializeField] private Toggle FlipCranks;
+    [SerializeField] public TMP_InputField Azimuth;
+    [SerializeField] public TMP_InputField Crank_length;
+    [SerializeField] public TMP_InputField Rod_length;
+    [SerializeField] public Toggle FlipCranks;
 
     private void Start()
     {

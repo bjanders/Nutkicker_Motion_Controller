@@ -3,6 +3,7 @@ using System;
 using System.IO.Ports;
 using TMPro;
 using System.Text;
+using UnityEngine.Events;
 
 [ExecuteInEditMode]
 public class SerialConnector : MonoBehaviour
@@ -17,6 +18,11 @@ public class SerialConnector : MonoBehaviour
     [SerializeField] private MessageGenerator_AMC1280 messagegenerator;
 
     [SerializeField] public SerialPort serialport;
+
+    //define events:
+    [Serializable] public class ConnectionStatusChangedEvent : UnityEvent<bool> { }
+    //instantiate events:
+    [SerializeField] public ConnectionStatusChangedEvent ConnectionStatusChanged;
 
     /////////////////////////////////////////////////////////////////////////
     private void Start()
@@ -42,10 +48,12 @@ public class SerialConnector : MonoBehaviour
     public void OnClick_Open()
     {
         Open();
+        ConnectionStatusChanged.Invoke(true);
     }
     public void OnClick_Close()
     {
         Close();
+        ConnectionStatusChanged.Invoke(false);
     }
     public void OnClick_Write()
     {
