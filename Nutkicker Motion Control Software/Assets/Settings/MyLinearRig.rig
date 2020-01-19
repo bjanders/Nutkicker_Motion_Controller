@@ -1,0 +1,32 @@
+{
+    "base_settings": {
+        "Radius": 0.800000011920929,
+        "AngleAlpha": 10.0
+    },
+    "final_settings": {
+        "Radius": 0.800000011920929,
+        "AngleAlpha": 110.0
+    },
+    "actuator_settings": {
+        "Diameter": 0.03999999910593033,
+        "MinLength": 1.0499999523162842,
+        "MaxLength": 1.649999976158142
+    },
+    "park_position": {
+        "x": 0.0,
+        "y": 0.8679999709129334,
+        "z": 0.0
+    },
+    "neutral_position": {
+        "x": 0.0,
+        "y": 1.1299999952316285,
+        "z": 0.0
+    },
+    "isCrankArmSystem": false,
+    "crankarm_settings": {
+        "Azimuth": 230.0,
+        "CrankLength": 0.30000001192092898,
+        "RodLength": 0.8500000238418579,
+        "IsFlipped": false
+    }
+}

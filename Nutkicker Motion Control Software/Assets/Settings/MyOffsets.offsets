@@ -1,0 +1,34 @@
+{
+    "Offsets_Height": {
+        "Sway": 0.0,
+        "Heave": 1.350000023841858,
+        "Surge": 0.0,
+        "Yaw": 0.0,
+        "Pitch": 0.0,
+        "Roll": 0.0
+    },
+    "Offsets_LFC": {
+        "Sway": 0.0,
+        "Heave": 0.0,
+        "Surge": 0.0,
+        "Yaw": 0.0,
+        "Pitch": 0.0,
+        "Roll": 0.0
+    },
+    "Offsets_HFC": {
+        "Sway": 0.0,
+        "Heave": 0.0,
+        "Surge": 0.0,
+        "Yaw": 0.0,
+        "Pitch": 0.0,
+        "Roll": 0.0
+    },
+    "Offsets_Final": {
+        "Sway": 0.0,
+        "Heave": -0.20000000298023225,
+        "Surge": 0.0,
+        "Yaw": 0.0,
+        "Pitch": 0.0,
+        "Roll": 0.0
+    }
+}
