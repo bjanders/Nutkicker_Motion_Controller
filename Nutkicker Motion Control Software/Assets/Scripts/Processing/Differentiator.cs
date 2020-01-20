@@ -23,9 +23,9 @@ public class Differentiator : MonoBehaviour
     void FixedUpdate()
     {
         CreateDerivative();
-
-        OutStream.Push(new Datapoint(Time.fixedTime, derivative, "derivative", "unknown"));
-
+        
+        OutStream?.Push(new Datapoint(Time.fixedTime, derivative, "derivative", "unknown"));
+        
         previous = latest;
     }
 

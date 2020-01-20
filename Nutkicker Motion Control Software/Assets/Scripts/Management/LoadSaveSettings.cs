@@ -9,12 +9,19 @@ using System;
 public class LoadSaveSettings : MonoBehaviour
 {
     [Header("Input Fields")]
-    [SerializeField] TMP_InputField Wx;
-    [SerializeField] TMP_InputField Wy;
-    [SerializeField] TMP_InputField Wz;
-    [SerializeField] TMP_InputField Ax;
-    [SerializeField] TMP_InputField Ay;
-    [SerializeField] TMP_InputField Az;
+    [SerializeField] TMP_InputField Input_Wx;
+    [SerializeField] TMP_InputField Input_Wy;
+    [SerializeField] TMP_InputField Input_Wz;
+    [SerializeField] TMP_InputField Input_Ax;
+    [SerializeField] TMP_InputField Input_Ay;
+    [SerializeField] TMP_InputField Input_Az;
+    [Header("Exceedance Detectors")]
+    [SerializeField] ExceedanceDetectorAndReporter ExDAR_Wx;
+    [SerializeField] ExceedanceDetectorAndReporter ExDAR_Wy;
+    [SerializeField] ExceedanceDetectorAndReporter ExDAR_Wz;
+    [SerializeField] ExceedanceDetectorAndReporter ExDAR_Ax;
+    [SerializeField] ExceedanceDetectorAndReporter ExDAR_Ay;
+    [SerializeField] ExceedanceDetectorAndReporter ExDAR_Az;
     [Header("File")]
     [SerializeField] string FileName = "ApplicationSettings";
     [ShowOnly] [SerializeField] string FileExtension = "AppSettings";
@@ -64,7 +71,6 @@ public class LoadSaveSettings : MonoBehaviour
     }
     public void OnClickLoad()
     {
-        Debug.Log("Loading " + FullFileName);
         try
         {
             FilePath = StandaloneFileBrowser.OpenFilePanel("Open .AppSettings File", Application.persistentDataPath, FileExtension, false)[0];
@@ -113,25 +119,34 @@ public class LoadSaveSettings : MonoBehaviour
     }
     private void ReadDataFromObject()
     {
-        Wx.text = saveobject.crashDetectionSettings.Threshold_Wx.ToString(GlobalVars.myNumberFormat());
-        Wy.text = saveobject.crashDetectionSettings.Threshold_Wy.ToString(GlobalVars.myNumberFormat());
-        Wz.text = saveobject.crashDetectionSettings.Threshold_Wz.ToString(GlobalVars.myNumberFormat());
+        //Set the numbers in the InputFields
+        Input_Wx.text = saveobject.crashDetectionSettings.Threshold_Wx.ToString(GlobalVars.myNumberFormat());
+        Input_Wy.text = saveobject.crashDetectionSettings.Threshold_Wy.ToString(GlobalVars.myNumberFormat());
+        Input_Wz.text = saveobject.crashDetectionSettings.Threshold_Wz.ToString(GlobalVars.myNumberFormat());
 
-        Ax.text = saveobject.crashDetectionSettings.Threshold_Ax.ToString(GlobalVars.myNumberFormat());
-        Ay.text = saveobject.crashDetectionSettings.Threshold_Ay.ToString(GlobalVars.myNumberFormat());
-        Az.text = saveobject.crashDetectionSettings.Threshold_Az.ToString(GlobalVars.myNumberFormat());
+        Input_Ax.text = saveobject.crashDetectionSettings.Threshold_Ax.ToString(GlobalVars.myNumberFormat());
+        Input_Ay.text = saveobject.crashDetectionSettings.Threshold_Ay.ToString(GlobalVars.myNumberFormat());
+        Input_Az.text = saveobject.crashDetectionSettings.Threshold_Az.ToString(GlobalVars.myNumberFormat());
+
+        //And make sure they also show up in the underlying objects
+        ExDAR_Wx.Threshold = saveobject.crashDetectionSettings.Threshold_Wx;
+        ExDAR_Wy.Threshold = saveobject.crashDetectionSettings.Threshold_Wy;
+        ExDAR_Wz.Threshold = saveobject.crashDetectionSettings.Threshold_Wz;
+        ExDAR_Ax.Threshold = saveobject.crashDetectionSettings.Threshold_Ax;
+        ExDAR_Ay.Threshold = saveobject.crashDetectionSettings.Threshold_Ay;
+        ExDAR_Az.Threshold = saveobject.crashDetectionSettings.Threshold_Az;
     }
 
     ////////////  Save DATA  ////////////
     private void WriteDataInObject()
     {
-        saveobject.crashDetectionSettings.Threshold_Wx = Convert.ToSingle(Wx.text);
-        saveobject.crashDetectionSettings.Threshold_Wy = Convert.ToSingle(Wy.text);
-        saveobject.crashDetectionSettings.Threshold_Wz = Convert.ToSingle(Wz.text);
+        saveobject.crashDetectionSettings.Threshold_Wx = Convert.ToSingle(Input_Wx.text);
+        saveobject.crashDetectionSettings.Threshold_Wy = Convert.ToSingle(Input_Wy.text);
+        saveobject.crashDetectionSettings.Threshold_Wz = Convert.ToSingle(Input_Wz.text);
 
-        saveobject.crashDetectionSettings.Threshold_Ax = Convert.ToSingle(Ax.text);
-        saveobject.crashDetectionSettings.Threshold_Ay = Convert.ToSingle(Ay.text);
-        saveobject.crashDetectionSettings.Threshold_Az = Convert.ToSingle(Az.text);
+        saveobject.crashDetectionSettings.Threshold_Ax = Convert.ToSingle(Input_Ax.text);
+        saveobject.crashDetectionSettings.Threshold_Ay = Convert.ToSingle(Input_Ay.text);
+        saveobject.crashDetectionSettings.Threshold_Az = Convert.ToSingle(Input_Az.text);
 
     }
     private void WriteObjectToFile(string path)

@@ -90,6 +90,10 @@ public class ExceedanceDetectorAndReporter : MonoBehaviour
     {
         Threshold = th;
     }
+    public void OnThresholdChanged(string s)
+    {
+        Threshold = Convert.ToSingle(s);
+    }
     public void Unlatch()                                           //this WILL unlatch the Exceedance detector! Might immediately re-trigger!!!
     {
         SignalLatched = false;

@@ -36,7 +36,6 @@ public class LoadSaveOffsets : MonoBehaviour
         {
             saveobject = ReadObjectFromFile(FilePath);
             ReadDataFromObject();
-           // Debug.Log("Loading Offsets:" + LoadFileName);
         }
 
         paneloffsets.UpdateInputs();
@@ -45,7 +44,7 @@ public class LoadSaveOffsets : MonoBehaviour
     public void OnClickSave()
     {
         FullFileName = FileName + "." + FileExtension;
-        Debug.Log("Saving: " + FullFileName);
+
         try
         {
             FilePath = StandaloneFileBrowser.SaveFilePanel("Save Offset File", Application.persistentDataPath, FileName, FileExtension);
@@ -66,8 +65,6 @@ public class LoadSaveOffsets : MonoBehaviour
     }
     public void OnClickLoad()
     {
-        Debug.Log("Loading " + FullFileName);
-
         try
         {
             FilePath = StandaloneFileBrowser.OpenFilePanel("Open File", Application.persistentDataPath, FileExtension, false)[0];
