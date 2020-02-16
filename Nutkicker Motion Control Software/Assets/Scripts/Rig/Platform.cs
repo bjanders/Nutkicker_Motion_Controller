@@ -9,29 +9,30 @@ using TMPro;
 [ExecuteInEditMode]
 public class Platform : MonoBehaviour
 {
-    //SerializeField
+    #region References
     [Header("Geometry")]
-    [Range(0,120)]
+    [Range(0, 120)]
     [SerializeField] public float Alpha;
     [Range(0, 120)]
     [SerializeField] private float Beta;
     [Range(0.1f, 2.0f)]
     [SerializeField] public float Radius;
     [Space]
-    [SerializeField] Transform  ConnectPoint1;  
-    [SerializeField] Transform  ConnectPoint2;
-    [SerializeField] Transform  ConnectPoint3;
-    [SerializeField] Transform  ConnectPoint4;
-    [SerializeField] Transform  ConnectPoint5;
-    [SerializeField] Transform  ConnectPoint6;
+    [SerializeField] Transform ConnectPoint1;
+    [SerializeField] Transform ConnectPoint2;
+    [SerializeField] Transform ConnectPoint3;
+    [SerializeField] Transform ConnectPoint4;
+    [SerializeField] Transform ConnectPoint5;
+    [SerializeField] Transform ConnectPoint6;
     [Space]
     [SerializeField] private float A1;
     [SerializeField] private float A2;
     [SerializeField] private float A3;
     [SerializeField] private float A4;
     [SerializeField] private float A5;
-    [SerializeField] private float A6;
-    
+    [SerializeField] private float A6; 
+    #endregion
+
     void Update()
     {
         CalculateAllAngles();
