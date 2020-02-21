@@ -1,14 +1,16 @@
 local nmc_file = nil 
-local data_file = nil 
+--local data_file = nil 
+local callbacks = {}
 
-function LuaExportStart()
+function callbacks.onSimulationStart()
 
-	nmc_file = io.open("C:/Users/frank/Saved Games/DCS/Logs/Recorder.nmc", "w") 
-	data_file = io.open("C:/Users/frank/Saved Games/DCS/Logs/Data.txt", "w") 
+	nmc_file = io.open(lfs.writedir().."/Logs/Recorder.nmc", "w") 
+	--data_file = io.open(lfs.writedir().."/Saved Games/DCS/Logs/Data.txt", "w") 
                       
 	--**********************
 	--**  Nutkicker Code  **
 	--**********************
+	log.write('Nutkicker', log.INFO, "Simulation started")
 	package.path  = package.path..";"..lfs.currentdir().."/LuaSocket/?.lua"
 	package.cpath = package.cpath..";"..lfs.currentdir().."/LuaSocket/?.dll"
 
@@ -23,44 +25,42 @@ function LuaExportStart()
 	Nutkicker_socket:setoption("tcp-nodelay",true) 
 
 	NMC_Counter = 0
+
 	--*********************
 	--**  Nutkicker END  **
 	--*********************
 end
 
-function LuaExportBeforeNextFrame()
-end
-
-function LuaExportAfterNextFrame()
+function callbacks.onSimulationFrame()
 	--**********************
 	--**  Nutkicker Code  **
 	--**********************
 	
 	--Airdata:
-		local NMC_IAS = LoGetIndicatedAirSpeed()
-		local NMC_Machnumber = LoGetMachNumber()
-		local NMC_TAS = LoGetTrueAirSpeed()
-		local vv = LoGetVectorVelocity()
+		local NMC_IAS = Export.LoGetIndicatedAirSpeed()
+		local NMC_Machnumber = Export.LoGetMachNumber()
+		local NMC_TAS = Export.LoGetTrueAirSpeed()
+		local vv = Export.LoGetVectorVelocity()
 		local NMC_GS = math.sqrt( math.pow(vv.x,2) + math.pow(vv.z,2))
-		local NMC_AOA = LoGetAngleOfAttack();
-		local NMC_VerticalSpeed = LoGetVerticalVelocity()
-		local NMC_Height = LoGetAltitudeAboveGroundLevel()
+		local NMC_AOA = Export.LoGetAngleOfAttack();
+		local NMC_VerticalSpeed = Export.LoGetVerticalVelocity()
+		local NMC_Height = Export.LoGetAltitudeAboveGroundLevel()
 
 	--Euler angles:
-		local mySelf = LoGetSelfData()
+		local mySelf = Export.LoGetSelfData()
 		--local ADI_pitch, ADI_bank, ADI_yaw = LoGetADIPitchBankYaw()
 		local NMC_inertial_Yaw = 	mySelf.Heading
 		local NMC_inertial_Pitch = 	mySelf.Pitch
 		local NMC_inertial_Bank = 	mySelf.Bank
 
 	--Angular rates:
-		local NMC_Omega = LoGetAngularVelocity()
+		local NMC_Omega = Export.LoGetAngularVelocity()
 
 	--Accelerations:
-		local NMC_Accel = LoGetAccelerationUnits()
+		local NMC_Accel = Export.LoGetAccelerationUnits()
 
 	--Metadata:
-		local NMC_Time = LoGetModelTime()
+		local NMC_Time = Export.LoGetModelTime()
 		NMC_Counter = NMC_Counter + 1
 	
 	--Here the data is being sent to the Nutkicker Software: 
@@ -87,8 +87,8 @@ function LuaExportAfterNextFrame()
 	--*********************
 	--**  Nutkicker END  **
 	--*********************
-	
-	
+
+
 	nmc_file:write(string.format("%.4f\t %.4f\t %.4f\t %.4f\t %.4f\t %.4f\t %.4f\t %.4f\t %.4f\t %.4f\t %.4f\t %.4f\t %.4f\t %.4f\t %.4f\t %.4f\t %.4f\t %.4f \n",		
 													NMC_IAS,					--Airdata[0]
 													NMC_Machnumber,				--Airdata[1]
@@ -111,7 +111,7 @@ function LuaExportAfterNextFrame()
 																							))
 end
 
-function LuaExportStop()
+function callbacks.onSimulationStop()
 
 	--**********************
 	--**  Nutkicker Code  **
@@ -125,18 +125,18 @@ function LuaExportStop()
 	--*********************
 end
 
-function LuaExportActivityNextEvent(t)
-	local tNext = t
+-- function LuaExportActivityNextEvent(t)
+-- 	local tNext = t
 	
-	data_file:write(string.format("%.4f \n", LoGetAccelerationUnits().x))
-	
-	tNext = tNext + 0.1
-	return tNext
+-- 	data_file:write(string.format("%.4f \n", LoGetAccelerationUnits().x))
 
-end
+-- 	tNext = tNext + 0.1
+-- 	return tNext
+
+-- end
 
 
-
+DCS.setUserCallbacks(callbacks)
 
 --local t = LoGetModelTime()
 --local altRad = LoGetAltitudeAboveGroundLevel()
@@ -163,4 +163,3 @@ end
 --local lrudder = mech.controlsurfaces.rudder.left
 
 --socket.try(c:send(string.format("plane = %s, bank = %.4f, pitch = %.4f, t = %.4f, yaw = %.4f, slip = %f, y = %f, x = %f, relevator = %f, lelevator = %f, eleron = %f, rudder = %f, trueairspeed = %f, angleofattack = %f\n", plane, bank, pitch, t, yaw, slip, gs.y, av.x, relevator, lelevator, eleron, rudder, trueairspeed, angleofattack)))
-
